@@ -1,4 +1,4 @@
-class ProductEntitie:
+class ProductEntity:
     def __init__(self, id: int, name: str, description: str, price: float, category: int, image: str):
         self.id = id
         self.name = name

@@ -1,0 +1,49 @@
+# Python-related files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.pyo
+*.pyd
+*.pyd
+
+# Virtual environment
+venv/
+.env/
+
+# Flask specific
+instance/
+*.sqlite3
+
+# IDE/editor configurations
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment variables
+.env
+.env.*
+
+# Byte-compiled Python
+*.py[cod]
+
+# Unit test / coverage reports
+htmlcov/
+.coverage
+.tox/
+.nox/
+.cache
+pytest_cache/
+
+# Deployment related
+*.pid
+*.swp
+*.swo

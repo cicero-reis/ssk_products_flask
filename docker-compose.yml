@@ -1,0 +1,41 @@
+volumes:
+  ssk_product_data_python:
+    name: ssk_product_data_python
+    driver: local
+
+networks:
+  ssk_product_network_python:
+    driver: bridge
+
+services:
+  app:
+    image: ciceroreis/python:3.9
+    container_name: api
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/application
+    stdin_open: true
+    environment:
+      FLASK_ENV: ${FLASK_ENV}
+    depends_on:
+      - mysql
+    networks:
+      - ssk_product_network_python
+
+  mysql:
+    image: mysql:8.0
+    container_name: db
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ssk_product_data_python:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - ssk_product_network_python

@@ -8,6 +8,8 @@ from ioc.container import setup_ioc
 product_bp = Blueprint('product', __name__)
 api = Api(product_bp)
 
+print('Setting up product routes...', product_bp.name)
+
 # Configurar IoC container
 container = setup_ioc()
 

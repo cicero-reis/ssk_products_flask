@@ -1,19 +1,21 @@
 from flask_restful import Resource, request
-from application.services.interfaces.product_service_abstract import ProductServiceAbstract
+from application.queries.abstract.get_all_product_query_abstract import GetAllProductQueryAbstract
+from application.commands.abstract.create_product_command_abstract import CreateProductCommandAbstract
 
 class ProductListResource(Resource):
     def __init__(self, container):
-        self.product_service = container.resolve(ProductServiceAbstract)
+        self.get_all_product_query = container.resolve(GetAllProductQueryAbstract)
+        self.create_product_command = container.resolve(CreateProductCommandAbstract)
 
     def get(self):
-        products, error = self.product_service.get_all()
+        products, error = self.get_all_product_query.handle()
         if error:
             return {'error': error}, 404
         return {'products': products}, 200
 
     def post(self):
         data = request.json
-        product, error = self.product_service.create(data)
+        product, error = self.create_product_command.handle(data)
         if error:
             return {'error': error}, 400
         return {'product': product}, 201

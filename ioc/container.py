@@ -1,6 +1,23 @@
-from infra.repositories.product_repository import ProductRepository
-from application.services.product_service import ProductService
-from application.services.interfaces.product_service_abstract import ProductServiceAbstract
+from infra.repositories.get_all_product_repository import GetAllProductRepository
+from application.queries.get_all_product_query import GetAllProductQuery
+from application.queries.abstract.get_all_product_query_abstract import GetAllProductQueryAbstract
+
+from infra.repositories.get_by_id_product_repository import GetByIdProductRepository
+from application.queries.get_product_by_id_query import GetProductByIdQuery
+from application.queries.abstract.get_product_by_id_query_abstract import GetProductByIdQueryAbstract
+
+from infra.repositories.create_product_repository import CreateProductRepository
+from application.commands.create_product_command import CreateProductCommand
+from application.commands.abstract.create_product_command_abstract import CreateProductCommandAbstract
+
+from infra.repositories.update_product_repository import UpdateProductRepository
+from application.commands.update_product_command import UpdateProductCommand
+from application.commands.abstract.update_product_command_abstract import UpdateProductCommandAbstract
+
+from infra.repositories.delete_product_repository import DeleteProductRepository
+from application.commands.delete_product_command import DeleteProductCommand
+from application.commands.abstract.delete_product_command_abstract import DeleteProductCommandAbstract
+
 
 class IoCContainer:
     def __init__(self):
@@ -18,14 +35,28 @@ class IoCContainer:
         return service
 
 def setup_ioc():
-    # Instanciar repositórios
-    product_repository = ProductRepository()
+    
+    get_all_product_repo = GetAllProductRepository()
+    get_all_product_query = GetAllProductQuery(get_all_product_repo)
 
-    # Instanciar serviços com as dependências
-    product_service = ProductService(product_repository)
+    get_by_id_product_repo = GetByIdProductRepository()
+    get_product_by_id_query = GetProductByIdQuery(get_by_id_product_repo)
+
+    create_product_repo = CreateProductRepository()
+    create_product_command = CreateProductCommand(create_product_repo)
+
+    update_product_repo = UpdateProductRepository()
+    update_product_command = UpdateProductCommand(update_product_repo)
+
+    delete_product_repo = DeleteProductRepository()
+    delete_product_command = DeleteProductCommand(delete_product_repo)
 
     # Criar e registrar no container
-    container = IoCContainer()
-    container.register(ProductServiceAbstract, product_service)
+    container = IoCContainer()    
+    container.register(GetAllProductQueryAbstract, get_all_product_query)
+    container.register(GetProductByIdQueryAbstract, get_product_by_id_query)
+    container.register(CreateProductCommandAbstract, create_product_command)
+    container.register(UpdateProductCommandAbstract, update_product_command)
+    container.register(DeleteProductCommandAbstract, delete_product_command)
 
     return container

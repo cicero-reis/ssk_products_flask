@@ -1,27 +1,26 @@
-from infra.repositories.get_all_product_repository import GetAllProductRepository
-from application.queries.get_all_product_query import GetAllProductQuery
-from application.queries.abstract.get_all_product_query_abstract import GetAllProductQueryAbstract
+from infra.product.repositories.get_all_product_repository import GetAllProductRepository
+from application.product.queries.get_all_product_query import GetAllProductQuery
+from application.product.queries.abstract.get_all_product_query_abstract import GetAllProductQueryAbstract
 
-from infra.repositories.get_by_id_product_repository import GetByIdProductRepository
-from application.queries.get_product_by_id_query import GetProductByIdQuery
-from application.queries.abstract.get_product_by_id_query_abstract import GetProductByIdQueryAbstract
+from infra.product.repositories.get_by_id_product_repository import GetByIdProductRepository
+from application.product.queries.get_product_by_id_query import GetProductByIdQuery
+from application.product.queries.abstract.get_product_by_id_query_abstract import GetProductByIdQueryAbstract
 
-from infra.repositories.create_product_repository import CreateProductRepository
-from application.commands.create_product_command import CreateProductCommand
-from application.commands.abstract.create_product_command_abstract import CreateProductCommandAbstract
+from infra.product.repositories.create_product_repository import CreateProductRepository
+from application.product.commands.create_product_command import CreateProductCommand
+from application.product.commands.abstract.create_product_command_abstract import CreateProductCommandAbstract
 
-from infra.repositories.update_product_repository import UpdateProductRepository
-from application.commands.update_product_command import UpdateProductCommand
-from application.commands.abstract.update_product_command_abstract import UpdateProductCommandAbstract
+from infra.product.repositories.update_product_repository import UpdateProductRepository
+from application.product.commands.update_product_command import UpdateProductCommand
+from application.product.commands.abstract.update_product_command_abstract import UpdateProductCommandAbstract
 
-from infra.repositories.delete_product_repository import DeleteProductRepository
-from application.commands.delete_product_command import DeleteProductCommand
-from application.commands.abstract.delete_product_command_abstract import DeleteProductCommandAbstract
+from infra.product.repositories.delete_product_repository import DeleteProductRepository
+from application.product.commands.delete_product_command import DeleteProductCommand
+from application.product.commands.abstract.delete_product_command_abstract import DeleteProductCommandAbstract
 
-from application.events.event_publisher import EventPublisher
-from application.events.abstract.event_publisher_abstract import EventPublisherAbstract
+from application.product.events.event_product_publisher import EventProductPublisher
 
-from infra.repositories.product_event_store_repository import ProductEventStoreRepository
+from infra.product.repositories.event_product_repository import EventProductRepository
 
 
 class IoCContainer:
@@ -41,22 +40,23 @@ class IoCContainer:
 
 def setup_ioc():
     
+    event_publisher = EventProductPublisher()
+    event_product_repo = EventProductRepository()
+
     get_all_product_repo = GetAllProductRepository()
     get_all_product_query = GetAllProductQuery(get_all_product_repo)
 
     get_by_id_product_repo = GetByIdProductRepository()
     get_product_by_id_query = GetProductByIdQuery(get_by_id_product_repo)
 
-    product_event_store_repo = ProductEventStoreRepository()
+    create_product_repo = CreateProductRepository(event_product_repo)
 
-    create_product_repo = CreateProductRepository(product_event_store_repo)
-    event_publisher = EventPublisher()
     create_product_command = CreateProductCommand(create_product_repo, event_publisher)
 
-    update_product_repo = UpdateProductRepository(product_event_store_repo)
+    update_product_repo = UpdateProductRepository(event_product_repo)
     update_product_command = UpdateProductCommand(update_product_repo)
 
-    delete_product_repo = DeleteProductRepository(product_event_store_repo)
+    delete_product_repo = DeleteProductRepository(event_product_repo)
     delete_product_command = DeleteProductCommand(delete_product_repo)
 
     # Criar e registrar no container

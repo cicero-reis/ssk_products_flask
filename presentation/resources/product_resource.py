@@ -1,7 +1,7 @@
 from flask_restful import Resource, request
-from application.queries.abstract.get_product_by_id_query_abstract import GetProductByIdQueryAbstract
-from application.commands.abstract.update_product_command_abstract import UpdateProductCommandAbstract
-from application.commands.abstract.delete_product_command_abstract import DeleteProductCommandAbstract
+from application.product.queries.abstract.get_product_by_id_query_abstract import GetProductByIdQueryAbstract
+from application.product.commands.abstract.update_product_command_abstract import UpdateProductCommandAbstract
+from application.product.commands.abstract.delete_product_command_abstract import DeleteProductCommandAbstract
 
 class ProductResource(Resource):
     def __init__(self, container):

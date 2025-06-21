@@ -1,5 +1,5 @@
 from infra.models.product_model import ProductModel
-from domain.repositories.get_by_id_product_repository_abstract import GetByIdProductRepositoryAbstract
+from domain.product.repositories.get_by_id_product_repository_abstract import GetByIdProductRepositoryAbstract
 
 class GetByIdProductRepository(GetByIdProductRepositoryAbstract):
     

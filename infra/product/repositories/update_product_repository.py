@@ -1,10 +1,10 @@
 from infra.models.product_model import ProductModel
-from domain.repositories.update_product_repository_abstract import UpdateProductRepositoryAbstract
-from domain.repositories.product_event_store_repository_abstract import ProductEventStoreRepositoryAbstract
+from domain.product.repositories.update_product_repository_abstract import UpdateProductRepositoryAbstract
+from domain.product.repositories.event_product_repository_abstract import EventProductRepositoryAbstract
 
 class UpdateProductRepository(UpdateProductRepositoryAbstract):
 
-    def __init__(self, event_store_repo: ProductEventStoreRepositoryAbstract):
+    def __init__(self, event_store_repo: EventProductRepositoryAbstract):
         self.event_store_repo = event_store_repo
     
     def update(self, id, data):

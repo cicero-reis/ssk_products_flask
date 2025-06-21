@@ -1,6 +1,6 @@
 from flask_restful import Resource, request
-from application.queries.abstract.get_all_product_query_abstract import GetAllProductQueryAbstract
-from application.commands.abstract.create_product_command_abstract import CreateProductCommandAbstract
+from application.product.queries.abstract.get_all_product_query_abstract import GetAllProductQueryAbstract
+from application.product.commands.abstract.create_product_command_abstract import CreateProductCommandAbstract
 
 class ProductListResource(Resource):
     def __init__(self, container):

@@ -1,5 +1,5 @@
-from domain.repositories.delete_product_repository_abstract import DeleteProductRepositoryAbstract
-from application.commands.abstract.delete_product_command_abstract import DeleteProductCommandAbstract
+from domain.product.repositories.delete_product_repository_abstract import DeleteProductRepositoryAbstract
+from application.product.commands.abstract.delete_product_command_abstract import DeleteProductCommandAbstract
 
 class DeleteProductCommand(DeleteProductCommandAbstract):
 

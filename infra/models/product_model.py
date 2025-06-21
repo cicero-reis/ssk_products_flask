@@ -10,17 +10,17 @@ class ProductModel(db.Model):
     name = db.Column(db.String(100))
     description = db.Column(db.String(200))
     price = db.Column(db.Float)
-    category = db.Column(db.String(100))
+    category_id = db.Column(db.Integer, nullable=False)
     image = db.Column(db.String(100))
     created_at = db.Column(db.TIMESTAMP, default=datetime.utcnow)
     updated_at = db.Column(db.TIMESTAMP, default=datetime.utcnow, onupdate=datetime.utcnow)
     deleted_at = db.Column(db.TIMESTAMP, nullable=True)
 
-    def __init__(self, name, description, price, category, image):
+    def __init__(self, name, description, price, category_id, image):
         self.name = name
         self.description = description
         self.price = price
-        self.category = category
+        self.category_id = category_id
         self.image = image
 
     def json(self):
@@ -29,7 +29,7 @@ class ProductModel(db.Model):
             'name': self.name,
             'description': self.description,
             'price': self.price,
-            'category': self.category,
+            'category_id': self.category_id,
             'image': self.image
         }
 

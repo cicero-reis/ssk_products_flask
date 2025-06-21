@@ -18,6 +18,11 @@ from infra.repositories.delete_product_repository import DeleteProductRepository
 from application.commands.delete_product_command import DeleteProductCommand
 from application.commands.abstract.delete_product_command_abstract import DeleteProductCommandAbstract
 
+from application.events.event_publisher import EventPublisher
+from application.events.abstract.event_publisher_abstract import EventPublisherAbstract
+
+from infra.repositories.product_event_store_repository import ProductEventStoreRepository
+
 
 class IoCContainer:
     def __init__(self):
@@ -42,13 +47,16 @@ def setup_ioc():
     get_by_id_product_repo = GetByIdProductRepository()
     get_product_by_id_query = GetProductByIdQuery(get_by_id_product_repo)
 
-    create_product_repo = CreateProductRepository()
-    create_product_command = CreateProductCommand(create_product_repo)
+    product_event_store_repo = ProductEventStoreRepository()
 
-    update_product_repo = UpdateProductRepository()
+    create_product_repo = CreateProductRepository(product_event_store_repo)
+    event_publisher = EventPublisher()
+    create_product_command = CreateProductCommand(create_product_repo, event_publisher)
+
+    update_product_repo = UpdateProductRepository(product_event_store_repo)
     update_product_command = UpdateProductCommand(update_product_repo)
 
-    delete_product_repo = DeleteProductRepository()
+    delete_product_repo = DeleteProductRepository(product_event_store_repo)
     delete_product_command = DeleteProductCommand(delete_product_repo)
 
     # Criar e registrar no container

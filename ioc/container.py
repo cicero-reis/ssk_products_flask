@@ -1,3 +1,4 @@
+# product
 from infra.product.repositories.get_all_product_repository import GetAllProductRepository
 from application.product.queries.get_all_product_query import GetAllProductQuery
 from application.product.queries.abstract.get_all_product_query_abstract import GetAllProductQueryAbstract
@@ -22,6 +23,30 @@ from application.product.events.event_product_publisher import EventProductPubli
 
 from infra.product.repositories.event_product_repository import EventProductRepository
 
+# category
+# from infra.category.repositories.get_all_category_repository import GetAllCategoryRepository
+# from application.category.queries.get_all_category_query import GetAllCategoryQuery
+# from application.category.queries.abstract.get_all_category_query_abstract import GetAllCategoryQueryAbstract
+
+# from infra.category.repositories.get_by_id_category_repository import GetByIdCategoryRepository
+# from application.category.queries.get_category_by_id_query import GetCategoryByIdQuery
+# from application.category.queries.abstract.get_category_by_id_query_abstract import GetCategoryByIdQueryAbstract
+
+from infra.category.repositories.create_category_repository import CreateCategoryRepository
+from application.category.commands.create_category_command import CreateCategoryCommand
+from application.category.commands.abstract.create_category_command_abstract import CreateCategoryCommandAbstract
+
+# from infra.category.repositories.update_category_repository import UpdateCategoryRepository
+# from application.category.commands.update_category_command import UpdateCategoryCommand
+# from application.category.commands.abstract.update_category_command_abstract import UpdateCategoryCommandAbstract
+
+# from infra.category.repositories.delete_category_repository import DeleteCategoryRepository
+# from application.category.commands.delete_category_command import DeleteCategoryCommand
+# from application.category.commands.abstract.delete_category_command_abstract import DeleteCategoryCommandAbstract
+
+from application.category.events.event_category_publisher import EventCategoryPublisher
+from infra.category.repositories.event_category_repository import EventCategoryRepository
+
 
 class IoCContainer:
     def __init__(self):
@@ -40,31 +65,49 @@ class IoCContainer:
 
 def setup_ioc():
     
+    # Product
     event_publisher = EventProductPublisher()
     event_product_repo = EventProductRepository()
-
     get_all_product_repo = GetAllProductRepository()
     get_all_product_query = GetAllProductQuery(get_all_product_repo)
-
     get_by_id_product_repo = GetByIdProductRepository()
     get_product_by_id_query = GetProductByIdQuery(get_by_id_product_repo)
-
     create_product_repo = CreateProductRepository(event_product_repo)
-
     create_product_command = CreateProductCommand(create_product_repo, event_publisher)
-
     update_product_repo = UpdateProductRepository(event_product_repo)
     update_product_command = UpdateProductCommand(update_product_repo)
-
     delete_product_repo = DeleteProductRepository(event_product_repo)
     delete_product_command = DeleteProductCommand(delete_product_repo)
 
+    # Category
+    event_publisher = EventCategoryPublisher()
+    event_category_repo = EventCategoryRepository()
+    # get_all_category_repo = GetAllCategoryRepository()
+    # get_all_category_query = GetAllCategoryQuery(get_all_category_repo)
+    # get_by_id_category_repo = GetByIdCategoryRepository()
+    # get_category_by_id_query = GetCategoryByIdQuery(get_by_id_category_repo)
+    create_category_repo = CreateCategoryRepository(event_category_repo)
+    create_category_command = CreateCategoryCommand(create_category_repo, event_publisher)
+    # update_category_repo = UpdateCategoryRepository(event_category_repo)
+    # update_category_command = UpdateCategoryCommand(update_category_repo)
+    # delete_category_repo = DeleteCategoryRepository(event_category_repo)
+    # delete_category_command = DeleteCategoryCommand(delete_category_repo)
+
     # Criar e registrar no container
     container = IoCContainer()    
+
+    #Product
     container.register(GetAllProductQueryAbstract, get_all_product_query)
     container.register(GetProductByIdQueryAbstract, get_product_by_id_query)
     container.register(CreateProductCommandAbstract, create_product_command)
     container.register(UpdateProductCommandAbstract, update_product_command)
     container.register(DeleteProductCommandAbstract, delete_product_command)
+
+    # Category
+    # container.register(GetAllCategoryQueryAbstract, get_all_category_query)
+    # container.register(GetCategoryByIdQueryAbstract, get_category_by_id_query)
+    container.register(CreateCategoryCommandAbstract, create_category_command)
+    # container.register(UpdateCategoryCommandAbstract, update_category_command)
+    # container.register(DeleteCategoryCommandAbstract, delete_category_command)
 
     return container

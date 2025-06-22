@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class UpdateCategoryCommandAbstract(ABC):
+class UpdateCategoryRepositoryAbstract(ABC):
     @abstractmethod
-    def update(self, category_id: int, data):
+    def update(self, id, data):
         pass

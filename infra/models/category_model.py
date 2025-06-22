@@ -29,19 +29,19 @@ class CategoryModel(db.Model):
         return cls.query.filter(cls.deleted_at == None).all()
 
     @classmethod
-    def find_category(cls, id):
+    def find_by_id(cls, id):
         return cls.query.filter(cls.deleted_at == None, cls.id == id).first()
 
     def save_category(self):
         db.session.add(self)
         db.session.commit()
 
-    def update_category(self, **kwargs):
+    def update(self, **kwargs):
         for attr, value in kwargs.items():
             setattr(self, attr, value)
         db.session.commit()
 
-    def delete_category(self):
+    def delete(self):
         self.deleted_at = datetime.now(timezone.utc)
         db.session.commit()
 

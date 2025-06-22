@@ -4,8 +4,8 @@ from domain.product.repositories.event_product_repository_abstract import EventP
 
 class DeleteProductRepository(DeleteProductRepositoryAbstract):
 
-    def __init__(self, event_store_repo: EventProductRepositoryAbstract):
-        self.event_store_repo = event_store_repo
+    def __init__(self, event_repo: EventProductRepositoryAbstract):
+        self.event_repo = event_repo
 
     def delete(self, id):
         product = ProductModel.find_product(id)
@@ -13,7 +13,7 @@ class DeleteProductRepository(DeleteProductRepositoryAbstract):
             return None
         product.delete_product()
 
-        event = self.event_store_repo.save_event(
+        event = self.event_repo.save_event(
             "ProductDeleted",
             product
         )

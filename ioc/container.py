@@ -4,8 +4,8 @@ from application.product.queries.get_all_product_query import GetAllProductQuery
 from application.product.queries.abstract.get_all_product_query_abstract import GetAllProductQueryAbstract
 
 from infra.product.repositories.get_by_id_product_repository import GetByIdProductRepository
-from application.product.queries.get_product_by_id_query import GetProductByIdQuery
-from application.product.queries.abstract.get_product_by_id_query_abstract import GetProductByIdQueryAbstract
+from application.product.queries.get_by_id_product_query import GetByIdProductQuery
+from application.product.queries.abstract.get_by_id_product_query_abstract import GetByIdProductQueryAbstract
 
 from infra.product.repositories.create_product_repository import CreateProductRepository
 from application.product.commands.create_product_command import CreateProductCommand
@@ -71,7 +71,7 @@ def setup_ioc():
     get_all_product_repo = GetAllProductRepository()
     get_all_product_query = GetAllProductQuery(get_all_product_repo)
     get_by_id_product_repo = GetByIdProductRepository()
-    get_product_by_id_query = GetProductByIdQuery(get_by_id_product_repo)
+    get_product_by_id_query = GetByIdProductQuery(get_by_id_product_repo)
     create_product_repo = CreateProductRepository(event_product_repo)
     create_product_command = CreateProductCommand(create_product_repo, event_publisher)
     update_product_repo = UpdateProductRepository(event_product_repo)
@@ -98,7 +98,7 @@ def setup_ioc():
 
     #Product
     container.register(GetAllProductQueryAbstract, get_all_product_query)
-    container.register(GetProductByIdQueryAbstract, get_product_by_id_query)
+    container.register(GetByIdProductQueryAbstract, get_product_by_id_query)
     container.register(CreateProductCommandAbstract, create_product_command)
     container.register(UpdateProductCommandAbstract, update_product_command)
     container.register(DeleteProductCommandAbstract, delete_product_command)

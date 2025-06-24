@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class GetProductByIdQueryAbstract(ABC):
+class GetByIdProductQueryAbstract(ABC):
     @abstractmethod
     def handle(self, id):
         pass

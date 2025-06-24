@@ -1,8 +1,8 @@
-from application.product.queries.abstract.get_product_by_id_query_abstract import GetProductByIdQueryAbstract
+from application.product.queries.abstract.get_by_id_product_query_abstract import GetByIdProductQueryAbstract
 from domain.product.repositories.get_by_id_product_repository_abstract import GetByIdProductRepositoryAbstract
 from application.product.dtos.product_dto import ProductDTO
 
-class GetProductByIdQuery(GetProductByIdQueryAbstract):
+class GetByIdProductQuery(GetByIdProductQueryAbstract):
 
     def __init__(self, repo: GetByIdProductRepositoryAbstract):
         self.repo = repo

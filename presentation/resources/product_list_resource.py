@@ -23,7 +23,7 @@ class ProductListResource(Resource):
         json_data = request.json
         
         if not json_data:
-            return {'error': 'Nenhum dado fornecido'}, 400
+            return {'error': 'No data provided'}, 400
 
         try:
             data = self.product_request_schema.load(json_data)

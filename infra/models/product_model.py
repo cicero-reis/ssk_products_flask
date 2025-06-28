@@ -41,6 +41,10 @@ class ProductModel(db.Model):
     def find_product(cls, id):
         return cls.query.filter(cls.deleted_at == None, cls.id == id).first()
 
+    @classmethod
+    def find_by_name(cls, name):
+        return cls.query.filter(cls.deleted_at == None, cls.name == name).first()
+
     def save_product(self):
         db.session.add(self)
         db.session.commit()

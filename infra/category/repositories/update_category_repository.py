@@ -19,4 +19,4 @@ class UpdateCategoryRepository(UpdateCategoryRepositoryAbstract):
             category
         )
 
-        return category
+        return True, category

@@ -1,9 +1,11 @@
 from marshmallow import Schema, fields, validates, validates_schema, ValidationError
 from application.category.queries.abstract.get_by_name_category_query_abstract import GetByNameCategoryQueryAbstract
 
-class CategoryRequestSchema(Schema):
-    name = fields.String(required=True, error_messages={"required": "name is required."})
-    description = fields.String(required=True, error_messages={"required": "description is required."})
+class CategoryPatchRequestSchema(Schema):
+
+    id = fields.Integer(required=True, error_messages={"required": "id is required."})
+    name = fields.String(required=False, error_messages={"required": "name is required."})
+    description = fields.String(required=False, error_messages={"required": "description is required."})
 
     def __init__(self, container, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -29,13 +31,14 @@ class CategoryRequestSchema(Schema):
 
             if existing and existing_id != current_id:
                 raise ValidationError("name must be unique. This name already exists.")
-                
+
     @validates('description')
     def validate_description(self, value):
-        if not value.strip():
-            raise ValidationError("description cannot be empty.")
-        if len(value.strip()) < 10:
-            raise ValidationError("description must be at least 10 characters long.")
+        if value is not None:
+            if not value.strip():
+                raise ValidationError("description cannot be empty.")
+            if len(value.strip()) < 10:
+                raise ValidationError("description must be at least 10 characters long.")
 
     class Meta:
         ordered = True

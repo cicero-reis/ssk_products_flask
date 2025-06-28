@@ -31,6 +31,10 @@ class CategoryModel(db.Model):
     @classmethod
     def find_by_id(cls, id):
         return cls.query.filter(cls.deleted_at == None, cls.id == id).first()
+    
+    @classmethod
+    def find_by_name(cls, name):
+        return cls.query.filter(cls.deleted_at == None, cls.name == name).first()
 
     def save_category(self):
         db.session.add(self)
@@ -38,7 +42,8 @@ class CategoryModel(db.Model):
 
     def update(self, **kwargs):
         for attr, value in kwargs.items():
-            setattr(self, attr, value)
+            if hasattr(self, attr):
+                setattr(self, attr, value)
         db.session.commit()
 
     def delete(self):

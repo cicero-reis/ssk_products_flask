@@ -10,9 +10,11 @@ class UpdateCategoryCommand(UpdateCategoryCommandAbstract):
 
     def handle(self, id, data):
 
-        category = self.repo.update(id, data)
+        success, category = self.repo.update(id, data)
 
-        if not category:
+        print("DEBUG category:", repr(category), type(category))   
+
+        if not success:
             return None, f'Category id {id} not found'
 
         self.event.publish_event("category_updated", {"category_id": category.id})

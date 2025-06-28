@@ -44,6 +44,10 @@ from infra.category.repositories.delete_category_repository import DeleteCategor
 from application.category.commands.delete_category_command import DeleteCategoryCommand
 from application.category.commands.abstract.delete_category_command_abstract import DeleteCategoryCommandAbstract
 
+from infra.category.repositories.get_by_name_category_repository import GetByNameCategoryRepository
+from application.category.queries.get_by_name_category_query import GetByNameCategoryQuery
+from application.category.queries.abstract.get_by_name_category_query_abstract import GetByNameCategoryQueryAbstract
+
 from application.category.events.event_category_publisher import EventCategoryPublisher
 from infra.category.repositories.event_category_repository import EventCategoryRepository
 
@@ -92,6 +96,8 @@ def setup_ioc():
     update_category_command = UpdateCategoryCommand(update_category_repo, event_publisher)
     delete_category_repo = DeleteCategoryRepository(event_category_repo)
     delete_category_command = DeleteCategoryCommand(delete_category_repo, event_publisher)
+    get_by_name_category_repo = GetByNameCategoryRepository()
+    get_by_name_category_query = GetByNameCategoryQuery(get_by_name_category_repo)
 
     # Criar e registrar no container
     container = IoCContainer()    
@@ -109,5 +115,6 @@ def setup_ioc():
     container.register(CreateCategoryCommandAbstract, create_category_command)
     container.register(UpdateCategoryCommandAbstract, update_category_command)
     container.register(DeleteCategoryCommandAbstract, delete_category_command)
+    container.register(GetByNameCategoryQueryAbstract, get_by_name_category_query)
 
     return container

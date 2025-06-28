@@ -24,13 +24,13 @@ class ProductResource(Resource):
 
     def put(self, id):
         
-        json_data = request.json
+        data = request.json
 
-        if not json_data:
+        if not data:
             return {'error': 'No data provided'}, 400
 
         try:
-            data = self.product_request_schema.load(json_data)
+            data = self.product_request_schema.load(data)
         except ValidationError as err:
             return {'error': err.messages}, 400
 

@@ -12,7 +12,7 @@ class ProductUpdateRequestSchema(Schema):
         if value is not None:
             if not value.strip():
                 raise ValidationError("name cannot be empty.")
-            if len(value) < 3:
+            if len(value.strip()) < 3:
                 raise ValidationError("name must be at least 3 characters long.")
 
     @validates('description')
@@ -20,7 +20,7 @@ class ProductUpdateRequestSchema(Schema):
         if value is not None:
             if not value.strip():
                 raise ValidationError("description cannot be empty.")
-            if len(value) < 10:
+            if len(value.strip()) < 10:
                 raise ValidationError("description must be at least 10 characters long.")
 
     @validates('price')

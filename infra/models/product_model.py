@@ -51,7 +51,8 @@ class ProductModel(db.Model):
 
     def update_product(self, **kwargs):
         for attr, value in kwargs.items():
-            setattr(self, attr, value)
+            if hasattr(self, attr):
+                setattr(self, attr, value)
         db.session.commit()
 
     def delete_product(self):

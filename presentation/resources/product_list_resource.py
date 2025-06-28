@@ -9,7 +9,7 @@ class ProductListResource(Resource):
     def __init__(self, container):
         self.get_all_product_query = container.resolve(GetAllProductQueryAbstract)
         self.create_product_command = container.resolve(CreateProductCommandAbstract)
-        self.product_request_schema = ProductRequestSchema()
+        self.product_request_schema = ProductRequestSchema(container)
         self.product_response_schema = ProductResponseSchema()
 
     def get(self):

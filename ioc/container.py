@@ -19,6 +19,10 @@ from infra.product.repositories.delete_product_repository import DeleteProductRe
 from application.product.commands.delete_product_command import DeleteProductCommand
 from application.product.commands.abstract.delete_product_command_abstract import DeleteProductCommandAbstract
 
+from infra.product.repositories.get_by_name_product_repository import GetByNameProductRepository
+from application.product.queries.get_by_name_product_query import GetByNameProductQuery
+from application.product.queries.abstract.get_by_name_product_query_abstract import GetByNameProductQueryAbstract
+
 from application.product.events.event_product_publisher import EventProductPublisher
 
 from infra.product.repositories.event_product_repository import EventProductRepository
@@ -76,10 +80,12 @@ def setup_ioc():
     get_all_product_query = GetAllProductQuery(get_all_product_repo)
     get_by_id_product_repo = GetByIdProductRepository()
     get_product_by_id_query = GetByIdProductQuery(get_by_id_product_repo)
+    get_by_name_product_repo = GetByNameProductRepository()
+    get_by_name_product_query = GetByNameProductQuery(get_by_name_product_repo)
     create_product_repo = CreateProductRepository(event_product_repo)
     create_product_command = CreateProductCommand(create_product_repo, event_publisher)
     update_product_repo = UpdateProductRepository(event_product_repo)
-    update_product_command = UpdateProductCommand(update_product_repo)
+    update_product_command = UpdateProductCommand(update_product_repo, event_publisher)
     delete_product_repo = DeleteProductRepository(event_product_repo)
     delete_product_command = DeleteProductCommand(delete_product_repo)
 
@@ -105,6 +111,7 @@ def setup_ioc():
     #Product
     container.register(GetAllProductQueryAbstract, get_all_product_query)
     container.register(GetByIdProductQueryAbstract, get_product_by_id_query)
+    container.register(GetByNameProductQueryAbstract, get_by_name_product_query)
     container.register(CreateProductCommandAbstract, create_product_command)
     container.register(UpdateProductCommandAbstract, update_product_command)
     container.register(DeleteProductCommandAbstract, delete_product_command)

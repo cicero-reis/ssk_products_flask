@@ -17,8 +17,6 @@ class CategoryUpdateRequestSchema(Schema):
         current_id = data.get('id')
         value_name = data.get('name')
 
-        print(f"Validating name: {value_name}, current_id: {current_id}")
-
         if value_name is not None:
             value_name = value_name.strip()
 
@@ -31,7 +29,7 @@ class CategoryUpdateRequestSchema(Schema):
             existing = self.get_by_name_category_query.handle(name=value_name)
             existing_id = existing[0]['id'] if existing and existing[0] else None
 
-            if existing and existing_id != current_id:
+            if existing_id is not None and existing_id != current_id:
                 raise ValidationError("name must be unique. This name already exists.")
 
     @validates('description')

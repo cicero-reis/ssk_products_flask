@@ -12,8 +12,6 @@ class UpdateCategoryCommand(UpdateCategoryCommandAbstract):
 
         success, category = self.repo.update(id, data)
 
-        print("DEBUG category:", repr(category), type(category))   
-
         if not success:
             return None, f'Category id {id} not found'
 

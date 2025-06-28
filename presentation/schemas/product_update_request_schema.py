@@ -1,19 +1,38 @@
-from marshmallow import Schema, fields, validates, ValidationError
+from marshmallow import Schema, fields, validates, validates_schema, ValidationError
+from application.product.queries.abstract.get_by_name_product_query_abstract import GetByNameProductQueryAbstract
 
 class ProductUpdateRequestSchema(Schema):
-    name = fields.String(required=False, error_messages={"required": "name is required."})
-    description = fields.String(required=False, error_messages={"required": "description is required."})
-    price = fields.Float(required=False, error_messages={"required": "price is required."})
-    category_id = fields.Integer(required=False, error_messages={"required": "category_id is required."})
+    id = fields.Integer(required=True, error_messages={"required": "id is required."})
+    name = fields.String(required=True, error_messages={"required": "name is required."})
+    description = fields.String(required=True, error_messages={"required": "description is required."})
+    price = fields.Float(required=True, error_messages={"required": "price is required."})
+    category_id = fields.Integer(required=True, error_messages={"required": "category_id is required."})
     image = fields.String(required=False, allow_none=True, error_messages={"required": "image is required."})
 
-    @validates('name')
-    def validate_name(self, value):
-        if value is not None:
-            if not value.strip():
+    def __init__(self, container, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.get_by_name_product_query = container.resolve(GetByNameProductQueryAbstract)
+
+    @validates_schema
+    def validate_name(self, data, **kwargs):
+
+        current_id = data.get('id')        
+        value_name = data.get('name')
+
+        if value_name is not None:
+            value_name = value_name.strip()
+            
+            if not value_name:
                 raise ValidationError("name cannot be empty.")
-            if len(value.strip()) < 3:
+
+            if len(value_name) < 3:
                 raise ValidationError("name must be at least 3 characters long.")
+
+            existing = self.get_by_name_product_query.handle(name=value_name)
+            existing_id = existing[0]['id'] if existing and existing[0] else None
+
+            if existing_id is not None and existing_id != current_id:
+                raise ValidationError("name must be unique. This name already exists.")
 
     @validates('description')
     def validate_description(self, value):

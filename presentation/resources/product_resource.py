@@ -4,6 +4,7 @@ from application.product.queries.abstract.get_by_id_product_query_abstract impor
 from application.product.commands.abstract.update_product_command_abstract import UpdateProductCommandAbstract
 from application.product.commands.abstract.delete_product_command_abstract import DeleteProductCommandAbstract
 from presentation.schemas.product_update_request_schema import ProductUpdateRequestSchema
+from presentation.schemas.product_path_request_schema import ProductPathRequestSchema
 from presentation.schemas.product_request_schema import ProductRequestSchema
 from presentation.schemas.product_response_schema import ProductResponseSchema
 
@@ -12,8 +13,9 @@ class ProductResource(Resource):
         self.get_product_by_id_query = container.resolve(GetByIdProductQueryAbstract)
         self.update_product_command = container.resolve(UpdateProductCommandAbstract)
         self.delete_product_command = container.resolve(DeleteProductCommandAbstract)
-        self.product_request_schema = ProductRequestSchema()
-        self.product_update_request_schema = ProductUpdateRequestSchema()
+        self.product_request_schema = ProductRequestSchema(container)
+        self.product_update_request_schema = ProductUpdateRequestSchema(container)
+        self.product_path_request_schema = ProductPathRequestSchema(container)
         self.product_response_schema = ProductResponseSchema()
 
     def get(self, id):
@@ -29,8 +31,11 @@ class ProductResource(Resource):
         if not data:
             return {'error': 'No data provided'}, 400
 
+        if id != data['id']:
+            return {'error': 'Data invalid'}, 400
+
         try:
-            data = self.product_request_schema.load(data)
+            data = self.product_update_request_schema.load(data)
         except ValidationError as err:
             return {'error': err.messages}, 400
 
@@ -39,9 +44,9 @@ class ProductResource(Resource):
         if error:
             return {'error': error}, 404
 
-        result = self.product_response_schema.dump(product)
+        product = self.product_response_schema.dump(product)
         
-        return {'product': result}, 200
+        return {'product': product}, 200
 
     def patch(self, id):
 
@@ -50,8 +55,11 @@ class ProductResource(Resource):
         if not data:
             return {'error': 'No data provided'}, 400
 
+        if id != data['id']:
+            return {'error': 'Data invalid'}, 400
+
         try:
-            data = self.product_update_request_schema.load(data)
+            data = self.product_path_request_schema.load(data)
         except ValidationError as e:
             return {'error': e.messages}, 400
 
@@ -60,9 +68,9 @@ class ProductResource(Resource):
         if error:
             return {'error': error}, 404
         
-        result = self.product_response_schema.dump(product)
+        product = self.product_response_schema.dump(product)
 
-        return {'product': result}, 200
+        return {'product': product}, 200
 
     def delete(self, id):
         success, error = self.delete_product_command.handle(id)

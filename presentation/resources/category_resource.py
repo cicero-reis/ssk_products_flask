@@ -29,8 +29,6 @@ class CategoryResource(Resource):
         if not data:
             return {'error': 'No data provided'}, 400
 
-        print (f"Received data for update: {data['id']} for category ID: {id}")
-
         if id != data['id']:
             return {'error': 'Data invalid'}, 400
 

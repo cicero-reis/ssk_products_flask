@@ -18,4 +18,4 @@ class UpdateProductRepository(UpdateProductRepositoryAbstract):
             product
         )
 
-        return product
+        return True, product

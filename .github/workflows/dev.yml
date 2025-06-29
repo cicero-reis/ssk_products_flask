@@ -1,0 +1,27 @@
+name: LocalStack CI/CD Demo
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  simple-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Etapa 1 - Checkout do código
+        uses: actions/checkout@v3
+
+      - name: 🐳 Etapa 2 - Subindo Docker e LocalStack (simulado)
+        run: echo "Simulando docker-compose up..."
+
+      - name: 🛠️ Etapa 3 - Instalando Terraform (simulado)
+        run: echo "Simulando instalação do Terraform..."
+
+      - name: 🔧 Etapa 4 - Aplicando Terraform (simulado)
+        run: echo "Simulando terraform apply..."
+
+      - name: ✅ Etapa 5 - Testando a API Flask (simulado)
+        run: echo "Simulando teste de endpoint /health..."

@@ -1,11 +1,13 @@
 from marshmallow import Schema, fields
 
 class ProductResponseSchema(Schema):
-    id = fields.Integer(required=True, error_messages={"required": "id is required."})
-    name = fields.String(required=True, error_messages={"required": "name is required."})
-    description = fields.String(required=True, error_messages={"required": "description is required."})
-    price = fields.Float(required=True, error_messages={"required": "price is required."})
-    category_id = fields.Integer(required=True, error_messages={"required": "category_id is required."})    
+    id = fields.Integer()
+    name = fields.String()
+    description = fields.String()
+    price = fields.Float()
+    category_id = fields.Integer()
+    original_name = fields.String()
+    stored_filename = fields.String()
 
     class Meta:
         ordered = True

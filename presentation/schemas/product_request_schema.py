@@ -6,7 +6,9 @@ class ProductRequestSchema(Schema):
     description = fields.String(required=True, error_messages={"required": "description is required."})
     price = fields.Float(required=True, error_messages={"required": "price is required."})
     category_id = fields.Integer(required=True, error_messages={"required": "category_id is required."})
-    image = fields.String(required=False, allow_none=True, error_messages={"required": "image is required."})
+
+    original_name = fields.String(dump_only=True)
+    stored_filename = fields.String(dump_only=True)
 
     def __init__(self, container, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -27,15 +27,15 @@ class CategoryResource(Resource):
         data = request.json
 
         if not data:
-            return {'error': 'No data provided'}, 400
-
-        if id != data['id']:
-            return {'error': 'Data invalid'}, 400
+            return {'error': 'No data provided'}, 400        
 
         try:
             data = self.category_update_request_schema.load(data)
         except ValidationError as err:
             return {'error': err.messages}, 400
+
+        if id != data['id']:
+            return {'error': 'Data invalid'}, 400
 
         category, error = self.update_category_command.handle(id, data)
         
@@ -48,18 +48,18 @@ class CategoryResource(Resource):
 
     def patch(self, id):
 
-        data = request.json
+        data = request.json        
 
         if not data:
             return {'error': 'No data provided'}, 400
-
-        if id != data['id']:
-            return {'error': 'Data invalid'}, 400
 
         try:
             data = self.category_patch_request_schema.load(data)
         except ValidationError as e:
             return {'error': e.messages}, 400
+
+        if id != data['id']:
+            return {'error': 'Data invalid'}, 400
 
         category, error = self.update_category_command.handle(id, data)
 

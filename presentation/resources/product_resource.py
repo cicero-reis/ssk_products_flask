@@ -29,15 +29,15 @@ class ProductResource(Resource):
         data = request.json
 
         if not data:
-            return {'error': 'No data provided'}, 400
-
-        if id != data['id']:
-            return {'error': 'Data invalid'}, 400
+            return {'error': 'No data provided'}, 400        
 
         try:
             data = self.product_update_request_schema.load(data)
         except ValidationError as err:
             return {'error': err.messages}, 400
+
+        if id != data['id']:
+            return {'error': 'Data invalid'}, 400
 
         product, error = self.update_product_command.handle(id, data)
 
@@ -53,15 +53,15 @@ class ProductResource(Resource):
         data = request.json
 
         if not data:
-            return {'error': 'No data provided'}, 400
-
-        if id != data['id']:
-            return {'error': 'Data invalid'}, 400
+            return {'error': 'No data provided'}, 400        
 
         try:
             data = self.product_path_request_schema.load(data)
         except ValidationError as e:
             return {'error': e.messages}, 400
+
+        if id != data['id']:
+            return {'error': 'Data invalid'}, 400
 
         product, error = self.update_product_command.handle(id, data)
 

@@ -5,7 +5,8 @@ from sqlalchemy import pool # type: ignore
 
 from alembic import context # type: ignore
 
-from app import create_app, db # type: ignore
+from app import create_app
+from extensions import db, migrate
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

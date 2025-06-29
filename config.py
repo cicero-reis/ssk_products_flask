@@ -3,6 +3,8 @@ import os
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     DEBUG = False
+    S3_PUBLIC_URL = os.getenv("S3_PUBLIC_URL", "")
+    S3_BUCKET_NAME = os.getenv("S3_BUCKET_NAME", "sskproduct")
 
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = (

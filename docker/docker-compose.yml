@@ -2,6 +2,9 @@ volumes:
   ssk_product_data_python:
     name: ssk_product_data_python
     driver: local
+  ssk_localstack_data_python:
+    name: ssk_localstack_data_python
+    driver: local
 
 networks:
   ssk_product_network_python:
@@ -14,7 +17,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - .:/application
+      - ./../:/application
     stdin_open: true
     environment:
       FLASK_ENV: ${FLASK_ENV}
@@ -39,3 +42,19 @@ services:
       - "3306:3306"
     networks:
       - ssk_product_network_python
+
+  localstack:
+    image: localstack/localstack
+    container_name: ssk_localstack
+    ports:
+        - "127.0.0.1:4566:4566"
+        - "127.0.0.1:4510-4559:4510-4559"
+    environment:
+        - DEBUG=1
+    extra_hosts:
+        - "host.docker.internal:host-gateway"
+    volumes:
+        - ssk_localstack_data_python:/var/lib/localstack
+        - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+        - ssk_product_network_python

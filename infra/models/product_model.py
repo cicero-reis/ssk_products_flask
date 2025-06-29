@@ -7,21 +7,26 @@ class ProductModel(db.Model):
     __tablename__ = 'product'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(100))
-    description = db.Column(db.String(200))
-    price = db.Column(db.Float)
+    name = db.Column(db.String(100), nullable=False, unique=True)
+    description = db.Column(db.String(200), nullable=False)
+    price = db.Column(db.Float, nullable=False)
     category_id = db.Column(db.Integer, nullable=False)
-    image = db.Column(db.String(100))
+    
+    # Arquivo no S3
+    original_name = db.Column(db.String(100), nullable=False)
+    stored_filename = db.Column(db.String(100), nullable=False)
+
     created_at = db.Column(db.TIMESTAMP, default=datetime.utcnow)
     updated_at = db.Column(db.TIMESTAMP, default=datetime.utcnow, onupdate=datetime.utcnow)
     deleted_at = db.Column(db.TIMESTAMP, nullable=True)
 
-    def __init__(self, name, description, price, category_id, image):
+    def __init__(self, name, description, price, category_id, original_name, stored_filename):
         self.name = name
         self.description = description
         self.price = price
         self.category_id = category_id
-        self.image = image
+        self.original_name = original_name
+        self.stored_filename = stored_filename
 
     def json(self):
         return {
@@ -30,7 +35,8 @@ class ProductModel(db.Model):
             'description': self.description,
             'price': self.price,
             'category_id': self.category_id,
-            'image': self.image
+            'original_name': self.original_name,
+            'stored_filename': self.stored_filename,
         }
 
     @classmethod

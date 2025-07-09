@@ -15,19 +15,21 @@ ENV FLASK_RUN_HOST=0.0.0.0
 
 # Atualize o pip e instale pacotes necessários
 RUN apk update && \
-    apk add --no-cache bash gcc musl-dev libffi-dev openssl-dev && \
-    pip install --no-cache-dir --upgrade pip && \
+    apk add --no-cache bash gcc musl-dev libffi-dev openssl-dev python3-dev build-base linux-headers && \
+    pip install --no-cache-dir --upgrade pip wheel setuptools && \
     pip install --no-cache-dir gunicorn
 
 # Copia o arquivo de dependências para o diretório de trabalho
 COPY requirements.txt .
 
 # Instala as dependências listadas no requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt && \
-    apk del gcc musl-dev libffi-dev openssl-dev
+RUN pip install --no-cache-dir -r requirements.txt marshmallow-enum==1.5.1
 
 # Copia o restante do código da aplicação para o diretório de trabalho
 COPY . .
+
+# Limpeza de pacotes de compilação que não são mais necessários
+RUN apk del gcc build-base linux-headers
 
 # Exponha a porta em que a aplicação é executada
 EXPOSE 5000

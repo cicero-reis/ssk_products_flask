@@ -19,6 +19,41 @@ O projeto segue uma arquitetura limpa, com separação clara entre as camadas:
 - **errors**: Contém manipuladores de erro personalizados
 - **utils**: Contém funções utilitárias
 
+## API Documentation (Swagger/OpenAPI)
+
+A documentação da API está disponível via Swagger UI. Após iniciar a aplicação, acesse:
+
+```
+http://localhost:5000/api/docs
+```
+
+A especificação OpenAPI em formato JSON está disponível em:
+
+```
+http://localhost:5000/api/swagger.json
+```
+
+### Recursos da Documentação Swagger
+
+A documentação inclui:
+- Todos os endpoints disponíveis, organizados por tags (Categorias e Produtos)
+- Métodos HTTP suportados para cada endpoint (GET, POST, PUT, DELETE, PATCH)
+- Parâmetros de requisição e formatos esperados
+- Exemplos de payload para requisições
+- Esquemas de resposta com exemplos
+- Códigos de status e possíveis erros
+
+### Usando o Swagger UI
+
+1. Navegue para `http://localhost:5000/api/docs`
+2. Explore os endpoints disponíveis expandindo as seções
+3. Teste os endpoints diretamente na interface:
+   - Clique em um endpoint para expandir
+   - Clique em "Try it out"
+   - Preencha os parâmetros necessários
+   - Clique em "Execute"
+   - Veja a resposta da API, incluindo status code e corpo da resposta
+
 ## Testes
 
 ### Testes Unitários

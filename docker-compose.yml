@@ -17,7 +17,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ./../:/application
+      - .:/application
     stdin_open: true
     environment:
       FLASK_ENV: ${FLASK_ENV}

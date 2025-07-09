@@ -5,6 +5,7 @@ from extensions import db, migrate
 from errors.handlers import register_error_handlers
 from presentation.product_routes import product_bp
 from presentation.category_routes import category_bp
+from swagger import setup_swagger
 
 def create_app():
     app = Flask(__name__)
@@ -32,5 +33,9 @@ def create_app():
 
     # Registrar handlers de erro
     register_error_handlers(app)
+    
+    # Configurar Swagger UI
+    app = setup_swagger(app)
+    app.logger.info('Swagger UI configurado em /api/docs')
 
     return app

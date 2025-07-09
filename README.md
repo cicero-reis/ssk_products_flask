@@ -12,7 +12,12 @@ O projeto segue uma arquitetura limpa, com separação clara entre as camadas:
 - **domain**: Contém as entidades e interfaces de repositórios
 - **infra**: Contém implementações de infraestrutura (banco de dados, serviços externos)
 - **presentation**: Contém os controllers e schemas para API
+- **ioc**: Contém a configuração de injeção de dependências
 - **tests**: Contém os testes unitários e de integração
+- **terraform**: Contém arquivos de infraestrutura como código
+- **docker**: Contém configurações para containerização
+- **errors**: Contém manipuladores de erro personalizados
+- **utils**: Contém funções utilitárias
 
 ## Testes
 
@@ -50,3 +55,7 @@ docker-compose up
 ## Terraform
 
 Recursos de infraestrutura são gerenciados com Terraform. Os arquivos de configuração estão localizados em `terraform/`.
+
+## Injeção de Dependências
+
+O projeto utiliza o padrão IoC (Inversão de Controle) com a biblioteca `dependency-injector` para gerenciar as dependências. A configuração do container de IoC está localizada em `ioc/container.py`.

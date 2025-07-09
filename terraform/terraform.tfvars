@@ -1,5 +1,5 @@
 s3_buckets = {
-  "sskproduct" = {
+  "ssk_bucket" = {
     versioning_enabled = true
     force_destroy      = false
   }
@@ -7,7 +7,7 @@ s3_buckets = {
 
 tags = {
   Environment = "dev"
-  Project     = "ssk_products_flask"
+  Project     = "ssk"
 }
 
 

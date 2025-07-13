@@ -18,7 +18,7 @@ class TestCreateProductCommand(unittest.TestCase):
             event=self.mock_event_publisher
         )
         
-    @patch('application.product.commands.create_product_command.ProductDTO', ProductDTOStub)
+    @patch('src.application.product.commands.create_product_command.ProductDTO', ProductDTOStub)
     def test_handle_should_create_product_and_publish_event(self):
         
         data = {
@@ -61,7 +61,7 @@ class TestCreateProductCommand(unittest.TestCase):
         self.assertEqual(result["original_name"], data["original_name"])
         self.assertEqual(result["stored_filename"], "https://s3.example.com/test-bucket/abc123.jpg")
         
-    @patch('application.product.commands.create_product_command.ProductDTO', ProductDTOStub)
+    @patch('src.application.product.commands.create_product_command.ProductDTO', ProductDTOStub)
     def test_handle_should_return_dto_dictionary_with_null_image_url_when_no_stored_filename(self):
         
         data = {

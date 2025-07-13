@@ -18,7 +18,7 @@ class TestUpdateProductCommand(unittest.TestCase):
             event=self.mock_event_publisher
         )
         
-    @patch('application.product.commands.update_product_command.ProductDTO', ProductDTOStub)
+    @patch('src.application.product.commands.update_product_command.ProductDTO', ProductDTOStub)
     def test_handle_should_update_product_and_publish_event(self):
         # Arrange
         product_id = 1
@@ -63,7 +63,7 @@ class TestUpdateProductCommand(unittest.TestCase):
         self.assertEqual(result["original_name"], data["original_name"])
         self.assertEqual(result["stored_filename"], f"https://s3.example.com/test-bucket/{data['stored_filename']}")
         
-    @patch('application.product.commands.update_product_command.ProductDTO', ProductDTOStub)
+    @patch('src.application.product.commands.update_product_command.ProductDTO', ProductDTOStub)
     def test_handle_should_return_error_when_product_not_found(self):
         # Arrange
         product_id = 999

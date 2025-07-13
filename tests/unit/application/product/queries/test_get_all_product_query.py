@@ -14,7 +14,7 @@ class TestGetAllProductQuery(unittest.TestCase):
         # Instanciar a query com o mock
         self.query = GetAllProductQuery(repo=self.mock_repo)
         
-    @patch('application.product.queries.get_all_product_query.ProductDTO', ProductDTOStub)
+    @patch('src.application.product.queries.get_all_product_query.ProductDTO', ProductDTOStub)
     def test_handle_should_return_all_products(self):
         # Arrange
         mock_products = [
@@ -78,7 +78,7 @@ class TestGetAllProductQuery(unittest.TestCase):
         self.assertEqual(result[2]["name"], "Product 3")
         self.assertEqual(result[2]["stored_filename"], None)
         
-    @patch('application.product.queries.get_all_product_query.ProductDTO', ProductDTOStub)
+    @patch('src.application.product.queries.get_all_product_query.ProductDTO', ProductDTOStub)
     def test_handle_should_return_empty_list_when_no_products(self):
         # Arrange
         # Configure o mock para retornar uma lista vazia

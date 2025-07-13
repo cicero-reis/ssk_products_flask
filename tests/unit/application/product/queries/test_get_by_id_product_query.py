@@ -14,7 +14,7 @@ class TestGetByIdProductQuery(unittest.TestCase):
         # Instanciar a query com o mock
         self.query = GetByIdProductQuery(repo=self.mock_repo)
         
-    @patch('application.product.queries.get_by_id_product_query.ProductDTO', ProductDTOStub)
+    @patch('src.application.product.queries.get_by_id_product_query.ProductDTO', ProductDTOStub)
     def test_handle_should_return_product_when_found(self):
         # Arrange
         product_id = 1
@@ -46,7 +46,7 @@ class TestGetByIdProductQuery(unittest.TestCase):
         self.assertEqual(result["original_name"], "test.jpg")
         self.assertEqual(result["stored_filename"], "https://s3.example.com/test-bucket/abc123.jpg")
         
-    @patch('application.product.queries.get_by_id_product_query.ProductDTO', ProductDTOStub)
+    @patch('src.application.product.queries.get_by_id_product_query.ProductDTO', ProductDTOStub)
     def test_handle_should_return_error_when_product_not_found(self):
         # Arrange
         product_id = 999

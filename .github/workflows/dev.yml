@@ -2,22 +2,46 @@ name: SSK CI/CD
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "master", "develop", "DEV-*" ]
 
 jobs:
   lint:
-    name: 🧹 Lint Python
+    name: 🔍 Análise de código
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Instalar flake8
-        run: pip install flake8
-
-      - name: Rodar flake8
-        run: |
-          echo "Rodando flake8 na pasta app/"
-          flake8 app/ || echo "⚠️ Warnings encontrados, mas continuando"
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r docker/requirements.txt
+        pip install ruff mypy bandit pylint pylint-flask pylint-flask-sqlalchemy types-requests types-Flask types-SQLAlchemy types-PyJWT types-pytz
+        
+    - name: Verificar formatação com Ruff
+      continue-on-error: true
+      run: |
+        python -m ruff check --fix src/
+        python -m ruff check src/
+        
+    - name: Verificar tipagem com mypy
+      continue-on-error: true
+      run: |
+        python -m mypy src/
+        
+    - name: Verificar vulnerabilidades com Bandit
+      continue-on-error: true
+      run: |
+        python -m bandit -r src/
+        
+    - name: Verificar código com Pylint
+      continue-on-error: true
+      run: |
+        python -m pylint src/
 
   build:
     name: 🛠️ Build da aplicação

@@ -13,6 +13,9 @@ echo "Executando verificações de qualidade de código"
 echo "============================================="
 
 echo -e "\n1. Verificando formatação e erros de linting com Ruff..."
+echo "   1.1. Corrigindo problemas automáticos..."
+/usr/local/bin/python -m ruff check --fix src/ || true
+echo "   1.2. Verificando problemas restantes..."
 /usr/local/bin/python -m ruff check src/ || true
 
 echo -e "\n2. Verificando erros de tipagem com mypy..."

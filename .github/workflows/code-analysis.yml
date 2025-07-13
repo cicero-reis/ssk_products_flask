@@ -25,6 +25,7 @@ jobs:
         
     - name: Verificar formatação com Ruff
       run: |
+        python -m ruff check --fix src/
         python -m ruff check src/
         
     - name: Verificar tipagem com mypy (modo informativo)

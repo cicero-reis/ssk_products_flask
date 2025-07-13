@@ -1,7 +1,7 @@
-from typing import Any
 import os
 import re
 import uuid
+from typing import Any
 
 
 def generate_stored_filename(original_name: Any) -> Any:

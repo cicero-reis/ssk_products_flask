@@ -3,7 +3,7 @@ from unittest.mock import patch
 from io import StringIO
 import sys
 
-from application.category.events.event_category_publisher import EventCategoryPublisher
+from src.application.category.events.event_category_publisher import EventCategoryPublisher
 
 
 class TestEventCategoryPublisher(unittest.TestCase):

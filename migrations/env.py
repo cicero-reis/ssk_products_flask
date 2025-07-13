@@ -22,8 +22,8 @@ fileConfig(config.config_file_name)
 # target_metadata = mymodel.Base.metadata
 app = create_app()
 with app.app_context():
-    from infra.models.product_model import ProductModel
-    from infra.models.product_event import ProducEvent
+    from src.infra.models.product_model import ProductModel
+    from src.infra.models.product_event import ProducEvent
     target_metadata = db.metadata
 
 # other values from the config, defined by the needs of env.py,

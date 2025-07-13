@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import Mock
 
-from application.category.commands.delete_category_command import DeleteCategoryCommand
+from src.application.category.commands.delete_category_command import DeleteCategoryCommand
 
 
 class TestDeleteCategoryCommand(unittest.TestCase):

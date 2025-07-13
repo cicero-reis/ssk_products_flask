@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import Mock
 
-from application.product.commands.delete_product_command import DeleteProductCommand
+from src.application.product.commands.delete_product_command import DeleteProductCommand
 
 
 class TestDeleteProductCommand(unittest.TestCase):

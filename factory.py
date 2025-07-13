@@ -2,9 +2,9 @@ from flask import Flask
 import os
 import logging
 from extensions import db, migrate
-from errors.handlers import register_error_handlers
-from presentation.product_routes import product_bp
-from presentation.category_routes import category_bp
+from src.errors.handlers import register_error_handlers
+from src.presentation.product_routes import product_bp
+from src.presentation.category_routes import category_bp
 from swagger import setup_swagger
 
 def create_app():

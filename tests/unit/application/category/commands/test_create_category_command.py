@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import Mock, patch
 
-from application.category.commands.create_category_command import CreateCategoryCommand
-from domain.category.entity.category_entity import CategoryEntity
+from src.application.category.commands.create_category_command import CreateCategoryCommand
+from src.domain.category.entity.category_entity import CategoryEntity
 
 
 class TestCreateCategoryCommand(unittest.TestCase):

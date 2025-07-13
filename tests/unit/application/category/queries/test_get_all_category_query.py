@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import Mock
 
-from application.category.queries.get_all_category_query import GetAllCategoryQuery
-from domain.category.entity.category_entity import CategoryEntity
+from src.application.category.queries.get_all_category_query import GetAllCategoryQuery
+from src.domain.category.entity.category_entity import CategoryEntity
 
 
 class TestGetAllCategoryQuery(unittest.TestCase):

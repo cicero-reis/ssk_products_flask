@@ -8,16 +8,17 @@ Aplicação Flask para gerenciamento de produtos e categorias.
 
 O projeto segue uma arquitetura limpa, com separação clara entre as camadas:
 
-- **application**: Contém a lógica de aplicação (commands, queries, dtos, events)
-- **domain**: Contém as entidades e interfaces de repositórios
-- **infra**: Contém implementações de infraestrutura (banco de dados, serviços externos)
-- **presentation**: Contém os controllers e schemas para API
-- **ioc**: Contém a configuração de injeção de dependências
+- **src/**
+  - **application**: Contém a lógica de aplicação (commands, queries, dtos, events)
+  - **domain**: Contém as entidades e interfaces de repositórios
+  - **infra**: Contém implementações de infraestrutura (banco de dados, serviços externos)
+  - **presentation**: Contém os controllers e schemas para API
+  - **ioc**: Contém a configuração de injeção de dependências
+  - **errors**: Contém manipuladores de erro personalizados
+  - **utils**: Contém funções utilitárias
 - **tests**: Contém os testes unitários e de integração
 - **terraform**: Contém arquivos de infraestrutura como código
 - **docker**: Contém configurações para containerização
-- **errors**: Contém manipuladores de erro personalizados
-- **utils**: Contém funções utilitárias
 
 ## API Documentation (Swagger/OpenAPI)
 

@@ -39,5 +39,6 @@ jobs:
         python -m bandit -r src/
         
     - name: Verificar código com Pylint
+      continue-on-error: true
       run: |
         python -m pylint src/

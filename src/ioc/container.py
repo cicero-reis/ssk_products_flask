@@ -81,7 +81,7 @@ class IoCContainer:
         """Obtém o serviço registrado para o tipo abstrato"""
         service = self._services.get(abstract_type)
         if service is None:
-            raise Exception(f"Serviço não registrado para {abstract_type}")
+            raise ValueError(f"Serviço não registrado para {abstract_type}")
         return service
 
 

@@ -196,6 +196,6 @@ docker-compose up
 
 Recursos de infraestrutura são gerenciados com Terraform. Os arquivos de configuração estão localizados em `terraform/`.
 
-## Injeção de Dependências
+## Injeção de Dependências IoC
 
 O projeto utiliza o padrão IoC (Inversão de Controle) com a biblioteca `dependency-injector` para gerenciar as dependências. A configuração do container de IoC está localizada em `ioc/container.py`.

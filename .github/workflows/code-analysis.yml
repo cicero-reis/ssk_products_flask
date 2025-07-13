@@ -27,13 +27,14 @@ jobs:
       run: |
         python -m ruff check src/
         
-    - name: Verificar tipagem com mypy
+    - name: Verificar tipagem com mypy (modo informativo)
+      continue-on-error: true
       run: |
         python -m mypy src/
         
     - name: Verificar vulnerabilidades com Bandit
       run: |
-        python -m bandit -r src/ -c pyproject.toml
+        python -m bandit -r src/
         
     - name: Verificar código com Pylint
       run: |

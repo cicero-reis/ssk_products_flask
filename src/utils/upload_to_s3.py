@@ -1,3 +1,4 @@
+from typing import Any
 import boto3
 
 s3_client = boto3.client(
@@ -11,7 +12,7 @@ s3_client = boto3.client(
 BUCKET_NAME = "sskproduct"
 
 
-def upload_to_s3(file_obj, stored_filename):
+def upload_to_s3(file_obj: Any, stored_filename: Any) -> Any:
     s3_client.upload_fileobj(
         Fileobj=file_obj, Bucket=BUCKET_NAME, Key=stored_filename, ExtraArgs={"ACL": "public-read"}
     )

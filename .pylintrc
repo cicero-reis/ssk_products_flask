@@ -1,0 +1,29 @@
+[MASTER]
+# Lista de plugins que o pylint irá carregar
+load-plugins=pylint_flask,pylint_flask_sqlalchemy
+
+# Ignorar certos diretórios
+ignore=migrations,htmlcov
+
+[FORMAT]
+# Número máximo de caracteres em uma linha
+max-line-length=100
+
+[MESSAGES CONTROL]
+# Desativar mensagens específicas
+disable=C0103,  # Nome inválido
+       C0111,  # Falta de docstring
+       C0413,  # Import deve estar no topo do módulo
+       W0611,  # Import não utilizado
+       R0903,  # Poucos métodos públicos
+       R0913,  # Muitos argumentos
+       # Adicionado para evitar falhas no CI
+       R0914,  # Muitas variáveis locais
+       W0719   # Exceção muito genérica sendo levantada
+
+[TYPECHECK]
+# Lista de membros de classes que não são reconhecidos pelo Pylint
+ignored-classes=SQLAlchemy,scoped_session,Session,query
+
+# Pacotes que geram erros de importação mas que não devem bloquear a análise
+extension-pkg-whitelist=pydantic

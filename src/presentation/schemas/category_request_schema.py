@@ -1,9 +1,15 @@
-from marshmallow import Schema, fields, validates, validates_schema, ValidationError
-from src.application.category.queries.abstract.get_by_name_category_query_abstract import GetByNameCategoryQueryAbstract
+from marshmallow import Schema, ValidationError, fields, validates, validates_schema
+
+from src.application.category.queries.abstract.get_by_name_category_query_abstract import (
+    GetByNameCategoryQueryAbstract,
+)
+
 
 class CategoryRequestSchema(Schema):
     name = fields.String(required=True, error_messages={"required": "name is required."})
-    description = fields.String(required=True, error_messages={"required": "description is required."})
+    description = fields.String(
+        required=True, error_messages={"required": "description is required."}
+    )
 
     def __init__(self, container, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -11,9 +17,8 @@ class CategoryRequestSchema(Schema):
 
     @validates_schema
     def validate_name(self, data, **kwargs):
-
-        current_id = data.get('id')
-        value_name = data.get('name')
+        current_id = data.get("id")
+        value_name = data.get("name")
 
         if value_name is not None:
             value_name = value_name.strip()
@@ -25,12 +30,12 @@ class CategoryRequestSchema(Schema):
                 raise ValidationError("name must be at least 3 characters long.")
 
             existing = self.get_by_name_category_query.handle(name=value_name)
-            existing_id = existing[0]['id'] if existing and existing[0] else None
+            existing_id = existing[0]["id"] if existing and existing[0] else None
 
             if existing and existing_id != current_id:
                 raise ValidationError("name must be unique. This name already exists.")
-                
-    @validates('description')
+
+    @validates("description")
     def validate_description(self, value):
         if not value.strip():
             raise ValidationError("description cannot be empty.")

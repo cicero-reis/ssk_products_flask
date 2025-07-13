@@ -1,8 +1,10 @@
 from datetime import datetime
+
 from extensions import db
 
+
 class ProducEvent(db.Model):
-    __tablename__ = 'product_event'
+    __tablename__ = "product_event"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     product_id = db.Column(db.Integer, nullable=False)
@@ -18,5 +20,5 @@ class ProducEvent(db.Model):
             "user_id": self.user_id,
             "event_type": self.event_type,
             "data": self.data,
-            "timestamp": self.timestamp.isoformat()
+            "timestamp": self.timestamp.isoformat(),
         }

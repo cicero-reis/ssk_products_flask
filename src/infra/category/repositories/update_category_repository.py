@@ -1,6 +1,11 @@
+from src.domain.category.repositories.event_category_repository_abstract import (
+    EventCategoryRepositoryAbstract,
+)
+from src.domain.category.repositories.update_category_repository_abstract import (
+    UpdateCategoryRepositoryAbstract,
+)
 from src.infra.models.category_model import CategoryModel
-from src.domain.category.repositories.update_category_repository_abstract import UpdateCategoryRepositoryAbstract
-from src.domain.category.repositories.event_category_repository_abstract import EventCategoryRepositoryAbstract
+
 
 class UpdateCategoryRepository(UpdateCategoryRepositoryAbstract):
     def __init__(self, event_repo: EventCategoryRepositoryAbstract):
@@ -10,13 +15,10 @@ class UpdateCategoryRepository(UpdateCategoryRepositoryAbstract):
         category = CategoryModel.find_by_id(id)
 
         if not category:
-            return False, f'Category id {id} not found'
+            return False, f"Category id {id} not found"
 
         category.update(**data)
 
-        self.event_repo.save_event(
-            'CategoryUpdated',
-            category
-        )
+        self.event_repo.save_event("CategoryUpdated", category)
 
         return True, category

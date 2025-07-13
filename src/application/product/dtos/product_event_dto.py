@@ -13,9 +13,9 @@ class ProductEventDTO:
             product_id=event.product_id,
             action=event.action,
             data=event.data,
-            timestamp=event.timestamp
+            timestamp=event.timestamp,
         )
-        
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -23,5 +23,5 @@ class ProductEventDTO:
             "description": self.description,
             "price": self.price,
             "category_id": self.category_id,
-            "image": self.image
+            "image": self.image,
         }

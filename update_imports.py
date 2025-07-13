@@ -25,6 +25,20 @@ def update_imports(root_dir):
                         updated_content
                     )
                     
+                    # Update string literals used in decorators like @patch
+                    updated_content = re.sub(
+                        r"@patch\(['\"](?!src\.)(application|domain|errors|infra|ioc|presentation|utils)\.",
+                        r"@patch('src.\2.",
+                        updated_content
+                    )
+                    
+                    # Update any other string reference to modules
+                    updated_content = re.sub(
+                        r"['\"](?!src\.)(application|domain|errors|infra|ioc|presentation|utils)\.",
+                        r"'src.\1.",
+                        updated_content
+                    )
+                    
                     if content != updated_content:
                         print(f"Updating: {filepath}")
                         with open(filepath, 'w', encoding='utf-8') as file:
@@ -49,6 +63,20 @@ def update_imports(root_dir):
                 updated_content = re.sub(
                     r'import (application|domain|errors|infra|ioc|presentation|utils)\.', 
                     r'import src.\1.', 
+                    updated_content
+                )
+                
+                # Update string literals used in decorators like @patch
+                updated_content = re.sub(
+                    r"@patch\(['\"](?!src\.)(application|domain|errors|infra|ioc|presentation|utils)\.",
+                    r"@patch('src.\2.",
+                    updated_content
+                )
+                
+                # Update any other string reference to modules
+                updated_content = re.sub(
+                    r"['\"](?!src\.)(application|domain|errors|infra|ioc|presentation|utils)\.",
+                    r"'src.\1.",
                     updated_content
                 )
                 

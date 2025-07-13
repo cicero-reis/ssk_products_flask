@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 
-from domain.product.entity.product_entity import ProductEntity
+from src.domain.product.entity.product_entity import ProductEntity
 from tests.utils.stubs import ProductDTOStub
 
 

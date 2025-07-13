@@ -1,7 +1,7 @@
 import unittest
 
-from application.category.dtos.category_dto import CategoryDto
-from domain.category.entity.category_entity import CategoryEntity
+from src.application.category.dtos.category_dto import CategoryDto
+from src.domain.category.entity.category_entity import CategoryEntity
 
 
 class TestCategoryDto(unittest.TestCase):

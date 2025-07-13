@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import Mock, patch
 
-from application.product.queries.get_all_product_query import GetAllProductQuery
-from domain.product.entity.product_entity import ProductEntity
+from src.application.product.queries.get_all_product_query import GetAllProductQuery
+from src.domain.product.entity.product_entity import ProductEntity
 from tests.utils.stubs import ProductDTOStub
 
 

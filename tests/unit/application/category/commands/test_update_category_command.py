@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import Mock
 
-from application.category.commands.update_category_command import UpdateCategoryCommand
-from domain.category.entity.category_entity import CategoryEntity
+from src.application.category.commands.update_category_command import UpdateCategoryCommand
+from src.domain.category.entity.category_entity import CategoryEntity
 
 
 class TestUpdateCategoryCommand(unittest.TestCase):

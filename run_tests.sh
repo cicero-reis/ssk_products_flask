@@ -10,7 +10,7 @@ NC='\033[0m' # No Color
 echo -e "${YELLOW}Iniciando execução dos testes unitários...${NC}"
 
 # Executa os testes com coverage
-python -m pytest tests/unit -v --cov=application --cov=domain --cov-report=term --cov-report=html
+python -m pytest tests/unit -v --cov=src.application --cov=src.domain --cov-report=term --cov-report=html
 
 # Verifica se os testes passaram
 if [ $? -eq 0 ]; then

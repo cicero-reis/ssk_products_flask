@@ -3,7 +3,7 @@ from unittest.mock import patch
 from io import StringIO
 import sys
 
-from application.product.events.event_product_publisher import EventProductPublisher
+from src.application.product.events.event_product_publisher import EventProductPublisher
 
 
 class TestEventProductPublisher(unittest.TestCase):

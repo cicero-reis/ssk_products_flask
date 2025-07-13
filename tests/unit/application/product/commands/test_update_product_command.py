@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import Mock, patch
 
-from application.product.commands.update_product_command import UpdateProductCommand
-from domain.product.entity.product_entity import ProductEntity
+from src.application.product.commands.update_product_command import UpdateProductCommand
+from src.domain.product.entity.product_entity import ProductEntity
 from tests.utils.stubs import ProductDTOStub
 
 

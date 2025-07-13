@@ -1,8 +1,10 @@
-from src.application.category.queries.abstract.get_all_category_query_abstract import GetAllCategoryQueryAbstract
 from src.application.category.dtos.category_dto import CategoryDto
+from src.application.category.queries.abstract.get_all_category_query_abstract import (
+    GetAllCategoryQueryAbstract,
+)
+
 
 class GetAllCategoryQuery(GetAllCategoryQueryAbstract):
-
     def __init__(self, repo: GetAllCategoryQueryAbstract):
         self.repo = repo
 

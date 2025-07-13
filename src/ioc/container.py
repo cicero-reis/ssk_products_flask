@@ -1,59 +1,72 @@
 # product
-from src.infra.product.repositories.get_all_product_repository import GetAllProductRepository
-from src.application.product.queries.get_all_product_query import GetAllProductQuery
-from src.application.product.queries.abstract.get_all_product_query_abstract import GetAllProductQueryAbstract
-
-from src.infra.product.repositories.get_by_id_product_repository import GetByIdProductRepository
-from src.application.product.queries.get_by_id_product_query import GetByIdProductQuery
-from src.application.product.queries.abstract.get_by_id_product_query_abstract import GetByIdProductQueryAbstract
-
-from src.infra.product.repositories.create_product_repository import CreateProductRepository
+from src.application.category.commands.abstract.create_category_command_abstract import (
+    CreateCategoryCommandAbstract,
+)
+from src.application.category.commands.abstract.delete_category_command_abstract import (
+    DeleteCategoryCommandAbstract,
+)
+from src.application.category.commands.abstract.update_category_command_abstract import (
+    UpdateCategoryCommandAbstract,
+)
+from src.application.category.commands.create_category_command import CreateCategoryCommand
+from src.application.category.commands.delete_category_command import DeleteCategoryCommand
+from src.application.category.commands.update_category_command import UpdateCategoryCommand
+from src.application.category.events.event_category_publisher import EventCategoryPublisher
+from src.application.category.queries.abstract.get_all_category_query_abstract import (
+    GetAllCategoryQueryAbstract,
+)
+from src.application.category.queries.abstract.get_by_id_category_query_abstract import (
+    GetByIdCategoryQueryAbstract,
+)
+from src.application.category.queries.abstract.get_by_name_category_query_abstract import (
+    GetByNameCategoryQueryAbstract,
+)
+from src.application.category.queries.get_all_category_query import GetAllCategoryQuery
+from src.application.category.queries.get_by_id_category_query import GetByIdCategoryQuery
+from src.application.category.queries.get_by_name_category_query import GetByNameCategoryQuery
+from src.application.product.commands.abstract.create_product_command_abstract import (
+    CreateProductCommandAbstract,
+)
+from src.application.product.commands.abstract.delete_product_command_abstract import (
+    DeleteProductCommandAbstract,
+)
+from src.application.product.commands.abstract.update_product_command_abstract import (
+    UpdateProductCommandAbstract,
+)
 from src.application.product.commands.create_product_command import CreateProductCommand
-from src.application.product.commands.abstract.create_product_command_abstract import CreateProductCommandAbstract
-
-from src.infra.product.repositories.update_product_repository import UpdateProductRepository
-from src.application.product.commands.update_product_command import UpdateProductCommand
-from src.application.product.commands.abstract.update_product_command_abstract import UpdateProductCommandAbstract
-
-from src.infra.product.repositories.delete_product_repository import DeleteProductRepository
 from src.application.product.commands.delete_product_command import DeleteProductCommand
-from src.application.product.commands.abstract.delete_product_command_abstract import DeleteProductCommandAbstract
-
-from src.infra.product.repositories.get_by_name_product_repository import GetByNameProductRepository
-from src.application.product.queries.get_by_name_product_query import GetByNameProductQuery
-from src.application.product.queries.abstract.get_by_name_product_query_abstract import GetByNameProductQueryAbstract
-
+from src.application.product.commands.update_product_command import UpdateProductCommand
 from src.application.product.events.event_product_publisher import EventProductPublisher
-
-from src.infra.product.repositories.event_product_repository import EventProductRepository
+from src.application.product.queries.abstract.get_all_product_query_abstract import (
+    GetAllProductQueryAbstract,
+)
+from src.application.product.queries.abstract.get_by_id_product_query_abstract import (
+    GetByIdProductQueryAbstract,
+)
+from src.application.product.queries.abstract.get_by_name_product_query_abstract import (
+    GetByNameProductQueryAbstract,
+)
+from src.application.product.queries.get_all_product_query import GetAllProductQuery
+from src.application.product.queries.get_by_id_product_query import GetByIdProductQuery
+from src.application.product.queries.get_by_name_product_query import GetByNameProductQuery
+from src.infra.category.repositories.create_category_repository import CreateCategoryRepository
+from src.infra.category.repositories.delete_category_repository import DeleteCategoryRepository
+from src.infra.category.repositories.event_category_repository import EventCategoryRepository
 
 # category
 from src.infra.category.repositories.get_all_category_repository import GetAllCategoryRepository
-from src.application.category.queries.get_all_category_query import GetAllCategoryQuery
-from src.application.category.queries.abstract.get_all_category_query_abstract import GetAllCategoryQueryAbstract
-
 from src.infra.category.repositories.get_by_id_category_repository import GetByIdCategoryRepository
-from src.application.category.queries.get_by_id_category_query import GetByIdCategoryQuery
-from src.application.category.queries.abstract.get_by_id_category_query_abstract import GetByIdCategoryQueryAbstract
-
-from src.infra.category.repositories.create_category_repository import CreateCategoryRepository
-from src.application.category.commands.create_category_command import CreateCategoryCommand
-from src.application.category.commands.abstract.create_category_command_abstract import CreateCategoryCommandAbstract
-
+from src.infra.category.repositories.get_by_name_category_repository import (
+    GetByNameCategoryRepository,
+)
 from src.infra.category.repositories.update_category_repository import UpdateCategoryRepository
-from src.application.category.commands.update_category_command import UpdateCategoryCommand
-from src.application.category.commands.abstract.update_category_command_abstract import UpdateCategoryCommandAbstract
-
-from src.infra.category.repositories.delete_category_repository import DeleteCategoryRepository
-from src.application.category.commands.delete_category_command import DeleteCategoryCommand
-from src.application.category.commands.abstract.delete_category_command_abstract import DeleteCategoryCommandAbstract
-
-from src.infra.category.repositories.get_by_name_category_repository import GetByNameCategoryRepository
-from src.application.category.queries.get_by_name_category_query import GetByNameCategoryQuery
-from src.application.category.queries.abstract.get_by_name_category_query_abstract import GetByNameCategoryQueryAbstract
-
-from src.application.category.events.event_category_publisher import EventCategoryPublisher
-from src.infra.category.repositories.event_category_repository import EventCategoryRepository
+from src.infra.product.repositories.create_product_repository import CreateProductRepository
+from src.infra.product.repositories.delete_product_repository import DeleteProductRepository
+from src.infra.product.repositories.event_product_repository import EventProductRepository
+from src.infra.product.repositories.get_all_product_repository import GetAllProductRepository
+from src.infra.product.repositories.get_by_id_product_repository import GetByIdProductRepository
+from src.infra.product.repositories.get_by_name_product_repository import GetByNameProductRepository
+from src.infra.product.repositories.update_product_repository import UpdateProductRepository
 
 
 class IoCContainer:
@@ -71,8 +84,8 @@ class IoCContainer:
             raise Exception(f"Serviço não registrado para {abstract_type}")
         return service
 
+
 def setup_ioc():
-    
     # Product
     event_publisher = EventProductPublisher()
     event_product_repo = EventProductRepository()
@@ -106,9 +119,9 @@ def setup_ioc():
     get_by_name_category_query = GetByNameCategoryQuery(get_by_name_category_repo)
 
     # Criar e registrar no container
-    container = IoCContainer()    
+    container = IoCContainer()
 
-    #Product
+    # Product
     container.register(GetAllProductQueryAbstract, get_all_product_query)
     container.register(GetByIdProductQueryAbstract, get_product_by_id_query)
     container.register(GetByNameProductQueryAbstract, get_by_name_product_query)

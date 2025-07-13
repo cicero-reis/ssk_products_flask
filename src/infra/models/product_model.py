@@ -1,17 +1,19 @@
 from datetime import datetime, timezone
+
 from sqlalchemy import event  # type: ignore
+
 from extensions import db
 
-class ProductModel(db.Model):
 
-    __tablename__ = 'product'
+class ProductModel(db.Model):
+    __tablename__ = "product"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(100), nullable=False, unique=True)
     description = db.Column(db.String(200), nullable=False)
     price = db.Column(db.Float, nullable=False)
     category_id = db.Column(db.Integer, nullable=False)
-    
+
     # Arquivo no S3
     original_name = db.Column(db.String(100), nullable=False)
     stored_filename = db.Column(db.String(100), nullable=False)
@@ -30,26 +32,26 @@ class ProductModel(db.Model):
 
     def json(self):
         return {
-            'id': self.id,
-            'name': self.name,
-            'description': self.description,
-            'price': self.price,
-            'category_id': self.category_id,
-            'original_name': self.original_name,
-            'stored_filename': self.stored_filename,
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "price": self.price,
+            "category_id": self.category_id,
+            "original_name": self.original_name,
+            "stored_filename": self.stored_filename,
         }
 
     @classmethod
     def get_all_active_products(cls):
-        return cls.query.filter(cls.deleted_at == None).all()
+        return cls.query.filter(cls.deleted_at is None).all()
 
     @classmethod
     def find_product(cls, id):
-        return cls.query.filter(cls.deleted_at == None, cls.id == id).first()
+        return cls.query.filter(cls.deleted_at is None, cls.id == id).first()
 
     @classmethod
     def find_by_name(cls, name):
-        return cls.query.filter(cls.deleted_at == None, cls.name == name).first()
+        return cls.query.filter(cls.deleted_at is None, cls.name == name).first()
 
     def save_product(self):
         db.session.add(self)
@@ -67,11 +69,12 @@ class ProductModel(db.Model):
 
 
 # Eventos para created_at / updated_at
-@event.listens_for(ProductModel, 'before_insert')
+@event.listens_for(ProductModel, "before_insert")
 def before_insert(mapper, connection, target):
     target.created_at = datetime.now(timezone.utc)
     target.updated_at = datetime.now(timezone.utc)
 
-@event.listens_for(ProductModel, 'before_update')
+
+@event.listens_for(ProductModel, "before_update")
 def before_update(mapper, connection, target):
     target.updated_at = datetime.now(timezone.utc)

@@ -1,5 +1,6 @@
 from marshmallow import Schema, fields
 
+
 class ProductResponseSchema(Schema):
     id = fields.Integer()
     name = fields.String()

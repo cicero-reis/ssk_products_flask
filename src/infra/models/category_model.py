@@ -1,10 +1,12 @@
 from datetime import datetime, timezone
+
 from sqlalchemy import event  # type: ignore
+
 from extensions import db
 
-class CategoryModel(db.Model):
 
-    __tablename__ = 'category'
+class CategoryModel(db.Model):
+    __tablename__ = "category"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(100))
@@ -18,23 +20,19 @@ class CategoryModel(db.Model):
         self.description = description
 
     def json(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'description': self.description
-        }
+        return {"id": self.id, "name": self.name, "description": self.description}
 
     @classmethod
     def get_all_active_categories(cls):
-        return cls.query.filter(cls.deleted_at == None).all()
+        return cls.query.filter(cls.deleted_at is None).all()
 
     @classmethod
     def find_by_id(cls, id):
-        return cls.query.filter(cls.deleted_at == None, cls.id == id).first()
-    
+        return cls.query.filter(cls.deleted_at is None, cls.id == id).first()
+
     @classmethod
     def find_by_name(cls, name):
-        return cls.query.filter(cls.deleted_at == None, cls.name == name).first()
+        return cls.query.filter(cls.deleted_at is None, cls.name == name).first()
 
     def save_category(self):
         db.session.add(self)
@@ -52,11 +50,12 @@ class CategoryModel(db.Model):
 
 
 # Eventos para created_at / updated_at
-@event.listens_for(CategoryModel, 'before_insert')
+@event.listens_for(CategoryModel, "before_insert")
 def before_insert(mapper, connection, target):
     target.created_at = datetime.now(timezone.utc)
     target.updated_at = datetime.now(timezone.utc)
 
-@event.listens_for(CategoryModel, 'before_update')
+
+@event.listens_for(CategoryModel, "before_update")
 def before_update(mapper, connection, target):
     target.updated_at = datetime.now(timezone.utc)

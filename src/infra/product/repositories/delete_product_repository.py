@@ -1,9 +1,13 @@
+from src.domain.product.repositories.delete_product_repository_abstract import (
+    DeleteProductRepositoryAbstract,
+)
+from src.domain.product.repositories.event_product_repository_abstract import (
+    EventProductRepositoryAbstract,
+)
 from src.infra.models.product_model import ProductModel
-from src.domain.product.repositories.delete_product_repository_abstract import DeleteProductRepositoryAbstract
-from src.domain.product.repositories.event_product_repository_abstract import EventProductRepositoryAbstract
+
 
 class DeleteProductRepository(DeleteProductRepositoryAbstract):
-
     def __init__(self, event_repo: EventProductRepositoryAbstract):
         self.event_repo = event_repo
 
@@ -13,9 +17,6 @@ class DeleteProductRepository(DeleteProductRepositoryAbstract):
             return None
         product.delete_product()
 
-        event = self.event_repo.save_event(
-            "ProductDeleted",
-            product
-        )
+        event = self.event_repo.save_event("ProductDeleted", product)
 
         return product

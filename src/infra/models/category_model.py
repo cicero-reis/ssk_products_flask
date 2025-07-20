@@ -23,16 +23,16 @@ class CategoryModel(db.Model):
         return {"id": self.id, "name": self.name, "description": self.description}
 
     @classmethod
-    def get_all_active_categories(cls):
-        return cls.query.filter(cls.deleted_at is None).all()
+    def get_all_categories(cls):
+        return cls.query.filter(cls.deleted_at.is_(None)).all()
 
     @classmethod
     def find_by_id(cls, id):
-        return cls.query.filter(cls.deleted_at is None, cls.id == id).first()
+        return cls.query.filter(cls.deleted_at.is_(None), cls.id == id).first()
 
     @classmethod
     def find_by_name(cls, name):
-        return cls.query.filter(cls.deleted_at is None, cls.name == name).first()
+        return cls.query.filter(cls.deleted_at.is_(None), cls.name == name).first()
 
     def save_category(self):
         db.session.add(self)

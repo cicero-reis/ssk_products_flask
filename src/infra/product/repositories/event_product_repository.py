@@ -8,7 +8,10 @@ from src.infra.models.product_event import ProducEvent
 class EventProductRepository(EventProductRepositoryAbstract):
     def save_event(self, event_type, data, user_id=0):
         event = ProducEvent(
-            product_id=data.id, user_id=user_id, event_type=event_type, data=data.json()
+            product_id=data.id,
+            user_id=user_id, 
+            event_type=event_type, 
+            data=data.json()
         )
         db.session.add(event)
         db.session.commit()

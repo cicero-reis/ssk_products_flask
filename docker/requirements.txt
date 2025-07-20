@@ -17,6 +17,7 @@ Flask-Swagger-UI==4.11.1
 itsdangerous==2.0.1
 Jinja2==3.0.1
 marshmallow==3.13.0
+marshmallow-enum==1.5.1
 MarkupSafe==2.0.1
 mypy==1.5.1
 pre-commit==3.5.0

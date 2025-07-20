@@ -19,6 +19,6 @@ class DeleteCategoryRepository(DeleteCategoryRepositoryAbstract):
 
         category.delete()
 
-        self.event_repo.save_event("CategoryDeleted", category)
+        self.event_repo.save_event("category_deleted", category)
 
         return category

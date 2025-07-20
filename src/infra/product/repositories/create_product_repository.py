@@ -15,6 +15,6 @@ class CreateProductRepository(CreateProductRepositoryAbstract):
         product = ProductModel(**data)
         product.save_product()
 
-        self.event_repo.save_event("ProductCreated", product)
+        self.event_repo.save_event("product_created", product)
 
         return product

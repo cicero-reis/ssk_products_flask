@@ -4,10 +4,13 @@ from src.application.category.commands.abstract.delete_category_command_abstract
 from src.application.category.events.abstract.event_category_publisher_abstract import (
     EventCategoryPublisherAbstract,
 )
+from src.domain.category.repositories.delete_category_repository_abstract import (
+    DeleteCategoryRepositoryAbstract,
+)
 
 
 class DeleteCategoryCommand(DeleteCategoryCommandAbstract):
-    def __init__(self, repo: DeleteCategoryCommandAbstract, event: EventCategoryPublisherAbstract):
+    def __init__(self, repo: DeleteCategoryRepositoryAbstract, event: EventCategoryPublisherAbstract):
         self.repo = repo
         self.event = event
 

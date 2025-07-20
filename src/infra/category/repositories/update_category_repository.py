@@ -19,6 +19,6 @@ class UpdateCategoryRepository(UpdateCategoryRepositoryAbstract):
 
         category.update(**data)
 
-        self.event_repo.save_event("CategoryUpdated", category)
+        self.event_repo.save_event("category_updated", category)
 
         return True, category

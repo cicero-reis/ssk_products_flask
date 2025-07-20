@@ -87,7 +87,7 @@ class IoCContainer:
 
 def setup_ioc():
     # Product
-    event_publisher = EventProductPublisher()
+    event_publisher_product = EventProductPublisher()
     event_product_repo = EventProductRepository()
     get_all_product_repo = GetAllProductRepository()
     get_all_product_query = GetAllProductQuery(get_all_product_repo)
@@ -96,25 +96,25 @@ def setup_ioc():
     get_by_name_product_repo = GetByNameProductRepository()
     get_by_name_product_query = GetByNameProductQuery(get_by_name_product_repo)
     create_product_repo = CreateProductRepository(event_product_repo)
-    create_product_command = CreateProductCommand(create_product_repo, event_publisher)
+    create_product_command = CreateProductCommand(create_product_repo, event_publisher_product)
     update_product_repo = UpdateProductRepository(event_product_repo)
-    update_product_command = UpdateProductCommand(update_product_repo, event_publisher)
+    update_product_command = UpdateProductCommand(update_product_repo, event_publisher_product)
     delete_product_repo = DeleteProductRepository(event_product_repo)
-    delete_product_command = DeleteProductCommand(delete_product_repo)
+    delete_product_command = DeleteProductCommand(delete_product_repo, event_publisher_product)
 
     # Category
-    event_publisher = EventCategoryPublisher()
+    event_publisher_category = EventCategoryPublisher()
     event_category_repo = EventCategoryRepository()
     get_all_category_repo = GetAllCategoryRepository()
     get_all_category_query = GetAllCategoryQuery(get_all_category_repo)
     get_by_id_category_repo = GetByIdCategoryRepository()
     get_by_id_category_query = GetByIdCategoryQuery(get_by_id_category_repo)
     create_category_repo = CreateCategoryRepository(event_category_repo)
-    create_category_command = CreateCategoryCommand(create_category_repo, event_publisher)
+    create_category_command = CreateCategoryCommand(create_category_repo, event_publisher_category)
     update_category_repo = UpdateCategoryRepository(event_category_repo)
-    update_category_command = UpdateCategoryCommand(update_category_repo, event_publisher)
+    update_category_command = UpdateCategoryCommand(update_category_repo, event_publisher_category)
     delete_category_repo = DeleteCategoryRepository(event_category_repo)
-    delete_category_command = DeleteCategoryCommand(delete_category_repo, event_publisher)
+    delete_category_command = DeleteCategoryCommand(delete_category_repo, event_publisher_category)
     get_by_name_category_repo = GetByNameCategoryRepository()
     get_by_name_category_query = GetByNameCategoryQuery(get_by_name_category_repo)
 

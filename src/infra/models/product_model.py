@@ -43,15 +43,15 @@ class ProductModel(db.Model):
 
     @classmethod
     def get_all_active_products(cls):
-        return cls.query.filter(cls.deleted_at is None).all()
+        return cls.query.filter(cls.deleted_at.is_(None)).all()
 
     @classmethod
     def find_product(cls, id):
-        return cls.query.filter(cls.deleted_at is None, cls.id == id).first()
+        return cls.query.filter(cls.deleted_at.is_(None), cls.id == id).first()
 
     @classmethod
     def find_by_name(cls, name):
-        return cls.query.filter(cls.deleted_at is None, cls.name == name).first()
+        return cls.query.filter(cls.deleted_at.is_(None), cls.name == name).first()
 
     def save_product(self):
         db.session.add(self)

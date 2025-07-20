@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 class EventProductRepositoryAbstract(ABC):
     @abstractmethod
-    def save_event(self, product_id, event_type, data):
+    def save_event(self, event_type, data):
         pass
 
     @abstractmethod

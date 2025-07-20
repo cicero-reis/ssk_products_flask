@@ -1,10 +1,10 @@
-from src.application.category.events.abstract.event_category_publisher_abstract import (
-    EventCategoryPublisherAbstract,
-)
 from src.application.product.commands.abstract.update_product_command_abstract import (
     UpdateProductCommandAbstract,
 )
 from src.application.product.dtos.product_dto import ProductDTO
+from src.application.product.events.abstract.event_product_publisher_abstract import (
+    EventProductPublisherAbstract,
+)
 from src.domain.product.repositories.update_product_repository_abstract import (
     UpdateProductRepositoryAbstract,
 )
@@ -12,7 +12,7 @@ from src.domain.product.repositories.update_product_repository_abstract import (
 
 class UpdateProductCommand(UpdateProductCommandAbstract):
     def __init__(
-        self, repo: UpdateProductRepositoryAbstract, event: EventCategoryPublisherAbstract
+        self, repo: UpdateProductRepositoryAbstract, event: EventProductPublisherAbstract
     ):
         self.repo = repo
         self.event = event

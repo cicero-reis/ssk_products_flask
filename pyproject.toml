@@ -32,3 +32,6 @@ exclude = [
 
 [tool.ruff.isort]
 known-first-party = ["src"]
+
+[tool.mypy]
+ignore_missing_imports = true

@@ -4,6 +4,7 @@ class ProductEventDTO:
         self.product_id = product_id
         self.action = action
         self.data = data
+        self.version = version  # Adicionando atributo que estava faltando
         self.timestamp = timestamp
 
     @staticmethod
@@ -13,15 +14,16 @@ class ProductEventDTO:
             product_id=event.product_id,
             action=event.action,
             data=event.data,
+            version=event.version,  # Adicionando o parâmetro version
             timestamp=event.timestamp,
         )
 
     def to_dict(self):
         return {
             "id": self.id,
-            "name": self.name,
-            "description": self.description,
-            "price": self.price,
-            "category_id": self.category_id,
-            "image": self.image,
+            "product_id": self.product_id,  # Corrigindo para product_id em vez de name
+            "action": self.action,  # Corrigindo para action em vez de description
+            "data": self.data,  # Corrigindo para data em vez de price
+            "version": self.version,  # Adicionando version
+            "timestamp": self.timestamp,  # Adicionando timestamp
         }

@@ -17,6 +17,6 @@ class UpdateProductRepository(UpdateProductRepositoryAbstract):
             return None
         product.update_product(**data)
 
-        event = self.event_repo.save_event("ProductUpdated", product)
+        self.event_repo.save_event("product_updated", product)
 
         return True, product

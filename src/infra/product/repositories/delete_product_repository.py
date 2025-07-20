@@ -17,6 +17,6 @@ class DeleteProductRepository(DeleteProductRepositoryAbstract):
             return None
         product.delete_product()
 
-        event = self.event_repo.save_event("ProductDeleted", product)
+        self.event_repo.save_event("product_deleted", product)
 
         return product

@@ -23,7 +23,7 @@ RUN apk update && \
 COPY requirements.txt .
 
 # Instala as dependências listadas no requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt marshmallow-enum==1.5.1
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copia o restante do código da aplicação para o diretório de trabalho
 COPY . .

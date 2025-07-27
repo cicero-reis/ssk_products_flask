@@ -1,3 +1,4 @@
+from typing import Any
 from marshmallow import Schema, ValidationError, fields, validates, validates_schema
 
 from src.application.product.queries.abstract.get_by_name_product_query_abstract import (
@@ -18,12 +19,12 @@ class ProductRequestSchema(Schema):
     original_name = fields.String(dump_only=True)
     stored_filename = fields.String(dump_only=True)
 
-    def __init__(self, container, *args, **kwargs):
+    def __init__(self, container: Any, *args: Any, **kwargs: Any) -> Any:
         super().__init__(*args, **kwargs)
         self.get_by_name_product_query = container.resolve(GetByNameProductQueryAbstract)
 
     @validates_schema
-    def validate_name(self, data, **kwargs):
+    def validate_name(self, data: Any, **kwargs: Any) -> Any:
         current_id = data.get("id")
         value_name = data.get("name")
 
@@ -40,19 +41,19 @@ class ProductRequestSchema(Schema):
             raise ValidationError("name must be unique. This name already exists.")
 
     @validates("description")
-    def validate_description(self, value):
+    def validate_description(self, value: Any) -> Any:
         if not value.strip():
             raise ValidationError("description cannot be empty.")
         if len(value) < 10:
             raise ValidationError("description must be at least 10 characters long.")
 
     @validates("price")
-    def validate_price(self, value):
+    def validate_price(self, value: Any) -> Any:
         if value <= 0:
             raise ValidationError("price must be greater than 0.")
 
     @validates("category_id")
-    def validate_category_id(self, value):
+    def validate_category_id(self, value: Any) -> Any:
         if value <= 0:
             raise ValidationError("category_id must be greater than 0.")
 

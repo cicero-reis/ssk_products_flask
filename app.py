@@ -1,8 +1,11 @@
+
 from factory import create_app
+from flask import jsonify
 import os
 
+app = create_app()
+
 if __name__ == '__main__':
-    app = create_app()
     env = os.getenv("FLASK_ENV", "development")
     port = int(os.getenv("FLASK_RUN_PORT", 5000))
     debug = os.getenv("FLASK_DEBUG", "1") == "1"

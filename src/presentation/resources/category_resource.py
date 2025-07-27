@@ -1,3 +1,4 @@
+from typing import Any
 from flask_restful import Resource, request
 from marshmallow import ValidationError
 
@@ -16,7 +17,7 @@ from src.presentation.schemas.category_update_request_schema import CategoryUpda
 
 
 class CategoryResource(Resource):
-    def __init__(self, container):
+    def __init__(self, container: Any) -> Any:
         self.delete_category_command = container.resolve(DeleteCategoryCommandAbstract)
         self.get_by_id_category_query = container.resolve(GetByIdCategoryQueryAbstract)
         self.update_category_command = container.resolve(UpdateCategoryCommandAbstract)
@@ -24,13 +25,13 @@ class CategoryResource(Resource):
         self.category_response_schema = CategoryResponseSchema()
         self.category_patch_request_schema = CategoryPatchRequestSchema(container)
 
-    def get(self, id):
+    def get(self, id: Any) -> Any:
         category, error = self.get_by_id_category_query.handle(id)
         if error:
             return {"error": error}, 404
         return {"category": category}, 200
 
-    def put(self, id):
+    def put(self, id: Any) -> Any:
         data = request.json
 
         if not data:
@@ -53,7 +54,7 @@ class CategoryResource(Resource):
 
         return {"category": category}, 200
 
-    def patch(self, id):
+    def patch(self, id: Any) -> Any:
         data = request.json
 
         if not data:
@@ -76,7 +77,7 @@ class CategoryResource(Resource):
 
         return {"category": result}, 200
 
-    def delete(self, id):
+    def delete(self, id: Any) -> Any:
         success, error = self.delete_category_command.handle(id)
 
         if error:

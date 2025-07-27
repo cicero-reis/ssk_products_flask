@@ -1,3 +1,4 @@
+from typing import Any
 from src.application.product.commands.abstract.update_product_command_abstract import (
     UpdateProductCommandAbstract,
 )
@@ -17,7 +18,7 @@ class UpdateProductCommand(UpdateProductCommandAbstract):
         self.repo = repo
         self.event = event
 
-    def handle(self, id, data):
+    def handle(self, id: Any, data: Any) -> Any:
         success, product = self.repo.update(id, data)
 
         if not success:

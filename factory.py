@@ -2,9 +2,11 @@ from flask import Flask
 import os
 import logging
 from extensions import db, migrate
+from mongo_client import init_app as init_mongo_app
 from src.errors.handlers import register_error_handlers
 from src.presentation.product_routes import product_bp
 from src.presentation.category_routes import category_bp
+from src.presentation.order_routes import order_bp
 from swagger import setup_swagger
 
 def create_app():
@@ -25,11 +27,13 @@ def create_app():
 
     # Inicializar extensões
     db.init_app(app)
+    init_mongo_app(app)
     migrate.init_app(app, db)
 
     # Registrar blueprints
     app.register_blueprint(product_bp, url_prefix='/api')
     app.register_blueprint(category_bp, url_prefix='/api')
+    app.register_blueprint(order_bp, url_prefix='/api')
 
     # Registrar handlers de erro
     register_error_handlers(app)

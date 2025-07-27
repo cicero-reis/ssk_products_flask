@@ -1,8 +1,9 @@
+from typing import Any
 from flask import current_app
 
 
 class ProductDTO:
-    def __init__(self, id, name, description, price, category_id, original_name, stored_filename):
+    def __init__(self, id: Any, name: Any, description: Any, price: Any, category_id: Any, original_name: Any, stored_filename: Any) -> Any:
         self.id = id
         self.name = name
         self.description = description
@@ -12,7 +13,7 @@ class ProductDTO:
         self.stored_filename = stored_filename
 
     @staticmethod
-    def from_entity(product):
+    def from_entity(product: Any) -> Any:
         return ProductDTO(
             id=product.id,
             name=product.name,
@@ -23,7 +24,7 @@ class ProductDTO:
             stored_filename=product.stored_filename,
         )
 
-    def to_dict(self):
+    def to_dict(self) -> Any:
         return {
             "id": self.id,
             "name": self.name,
@@ -34,7 +35,7 @@ class ProductDTO:
             "stored_filename": self.get_image_url(),
         }
 
-    def get_image_url(self):
+    def get_image_url(self) -> Any:
         if self.stored_filename:
             return f"{current_app.config['S3_PUBLIC_URL']}/{current_app.config['S3_BUCKET_NAME']}/{self.stored_filename}"
 

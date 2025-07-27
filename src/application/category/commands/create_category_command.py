@@ -1,3 +1,4 @@
+from typing import Any
 from src.application.category.commands.abstract.create_category_command_abstract import (
     CreateCategoryCommandAbstract,
 )
@@ -17,7 +18,7 @@ class CreateCategoryCommand(CreateCategoryCommandAbstract):
         self.repo = repo
         self.event = event
 
-    def handle(self, data):
+    def handle(self, data: Any) -> Any:
         category = self.repo.create(data)
 
         self.event.publish_event("category_created", {"category_id": category.id})

@@ -1,1 +1,2 @@
 flask-swagger-ui==4.11.1
+pymongo==4.7.2

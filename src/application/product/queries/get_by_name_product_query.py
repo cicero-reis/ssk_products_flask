@@ -1,3 +1,4 @@
+from typing import Any
 from src.application.product.dtos.product_dto import ProductDTO
 from src.application.product.queries.abstract.get_by_name_product_query_abstract import (
     GetByNameProductQueryAbstract,
@@ -8,10 +9,10 @@ from src.domain.product.repositories.get_by_name_product_repository_abstract imp
 
 
 class GetByNameProductQuery(GetByNameProductQueryAbstract):
-    def __init__(self, repo: GetByNameProductRepositoryAbstract):
+    def __init__(self, repo: GetByNameProductRepositoryAbstract) -> Any:
         self.repo = repo
 
-    def handle(self, name):
+    def handle(self, name: Any) -> Any:
         product = self.repo.get_by_name(name)
 
         if not product:

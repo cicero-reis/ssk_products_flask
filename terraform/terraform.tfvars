@@ -1,5 +1,5 @@
 s3_buckets = {
-  "ssk_bucket" = {
+  "sskbucket" = {
     versioning_enabled = true
     force_destroy      = false
   }

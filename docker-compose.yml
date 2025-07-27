@@ -58,3 +58,19 @@ services:
         - "/var/run/docker.sock:/var/run/docker.sock"
     networks:
         - ssk_product_network_python
+
+  mongodb:
+    image: mongo:6.0
+    container_name: ssk_mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: ssk_orders
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ssk_product_data_python:/data/db
+      - ./docker/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+    ports:
+      - "27017:27017"
+    networks:
+      - ssk_product_network_python

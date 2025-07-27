@@ -1,3 +1,4 @@
+from typing import Any
 from src.application.product.dtos.product_dto import ProductDTO
 from src.application.product.queries.abstract.get_by_id_product_query_abstract import (
     GetByIdProductQueryAbstract,
@@ -8,10 +9,10 @@ from src.domain.product.repositories.get_by_id_product_repository_abstract impor
 
 
 class GetByIdProductQuery(GetByIdProductQueryAbstract):
-    def __init__(self, repo: GetByIdProductRepositoryAbstract):
+    def __init__(self, repo: GetByIdProductRepositoryAbstract) -> Any:
         self.repo = repo
 
-    def handle(self, id):
+    def handle(self, id: Any) -> Any:
         product = self.repo.get_by_id(id)
         if not product:
             return None, f"Product id {id} not found"

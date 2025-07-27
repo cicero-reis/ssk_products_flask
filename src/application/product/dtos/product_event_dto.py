@@ -1,5 +1,6 @@
+from typing import Any
 class ProductEventDTO:
-    def __init__(self, id, product_id, action, data, version, timestamp):
+    def __init__(self, id: Any, product_id: Any, action: Any, data: Any, version: Any, timestamp: Any) -> Any:
         self.id = id
         self.product_id = product_id
         self.action = action
@@ -8,7 +9,7 @@ class ProductEventDTO:
         self.timestamp = timestamp
 
     @staticmethod
-    def from_entity(event):
+    def from_entity(event: Any) -> Any:
         return ProductEventDTO(
             id=event.id,
             product_id=event.product_id,
@@ -18,7 +19,7 @@ class ProductEventDTO:
             timestamp=event.timestamp,
         )
 
-    def to_dict(self):
+    def to_dict(self) -> Any:
         return {
             "id": self.id,
             "product_id": self.product_id,  # Corrigindo para product_id em vez de name

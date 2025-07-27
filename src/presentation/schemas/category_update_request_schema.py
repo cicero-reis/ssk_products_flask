@@ -1,3 +1,4 @@
+from typing import Any
 from marshmallow import Schema, ValidationError, fields, validates, validates_schema
 
 from src.application.category.queries.abstract.get_by_name_category_query_abstract import (
@@ -12,12 +13,12 @@ class CategoryUpdateRequestSchema(Schema):
         required=True, error_messages={"required": "description is required."}
     )
 
-    def __init__(self, container, *args, **kwargs):
+    def __init__(self, container: Any, *args: Any, **kwargs: Any) -> Any:
         super().__init__(*args, **kwargs)
         self.get_by_name_category_query = container.resolve(GetByNameCategoryQueryAbstract)
 
     @validates_schema
-    def validate_name(self, data, **kwargs):
+    def validate_name(self, data: Any, **kwargs: Any) -> Any:
         current_id = data.get("id")
         value_name = data.get("name")
 
@@ -37,7 +38,7 @@ class CategoryUpdateRequestSchema(Schema):
                 raise ValidationError("name must be unique. This name already exists.")
 
     @validates("description")
-    def validate_description(self, value):
+    def validate_description(self, value: Any) -> Any:
         if value is not None:
             if not value.strip():
                 raise ValidationError("description cannot be empty.")

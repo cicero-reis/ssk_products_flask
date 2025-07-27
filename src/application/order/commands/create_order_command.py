@@ -8,6 +8,6 @@ class CreateOrderCommand:
 
     def handle(self, data: Any) -> Any:
         order = self.repo.create(data)
-        self.event.publish_event("order_created", {"order_id": order.id})
+        assert hasattr(order, 'id'), f"Esperado entidade OrderMongoModel, recebido: {type(order)}"
         dto = OrderDTO.from_entity(order)
-        return dto.to_dict(), None
+        return dto, None

@@ -20,6 +20,15 @@ class MongoOrderRepository:
         data["created_at"] = now
         data["updated_at"] = now
         data["deleted_at"] = None
+
+        # Gera order_number sequencial por dia
+        start = datetime(now.year, now.month, now.day)
+        end = datetime(now.year, now.month, now.day, 23, 59, 59, 999999)
+        count = self.collection.count_documents({
+            "created_at": {"$gte": start, "$lte": end}
+        })
+        data["order_number"] = count + 1
+
         result = self.collection.insert_one(data)
         return self.get_by_id(result.inserted_id)
 

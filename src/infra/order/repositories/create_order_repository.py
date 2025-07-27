@@ -1,3 +1,5 @@
+
+from datetime import datetime
 from typing import Any
 
 
@@ -17,7 +19,4 @@ class CreateOrderRepository:
         return MongoOrderRepository(db)
 
     def create(self, data: Any) -> Any:
-        order = self.mongo_repo.create(data)
-        if self.event_repo:
-            self.event_repo.save_event("order_created", order)
-        return order.to_dict() if order else None
+        return self.mongo_repo.create(data)

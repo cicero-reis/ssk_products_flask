@@ -74,3 +74,22 @@ services:
       - "27017:27017"
     networks:
       - ssk_product_network_python
+
+  mongo-express:
+    image: mongo-express
+    container_name: ssk_mongo_express
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: "true"
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: admin
+      ME_CONFIG_MONGODB_AUTH_USERNAME: ""
+      ME_CONFIG_MONGODB_AUTH_PASSWORD: ""
+    depends_on:
+      - mongodb
+    networks:
+      - ssk_product_network_python

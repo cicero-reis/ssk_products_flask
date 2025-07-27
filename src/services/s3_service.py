@@ -1,8 +1,11 @@
 import os
 from typing import Any
+
 import boto3
-from src.services.interfaces.i_s3_service import IS3Service
 from botocore.exceptions import BotoCoreError, NoCredentialsError
+
+from src.services.interfaces.i_s3_service import IS3Service
+
 
 class S3Service(IS3Service):
 

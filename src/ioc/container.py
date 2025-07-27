@@ -1,81 +1,123 @@
 from typing import Any
-# product commands
-from src.application.product.commands.create_product_command import CreateProductCommand
-from src.application.product.commands.delete_product_command import DeleteProductCommand
-from src.application.product.commands.update_product_command import UpdateProductCommand
-from src.application.product.commands.abstract.create_product_command_abstract import CreateProductCommandAbstract
-from src.application.product.commands.abstract.delete_product_command_abstract import DeleteProductCommandAbstract
-from src.application.product.commands.abstract.update_product_command_abstract import UpdateProductCommandAbstract
-# product queries
-from src.application.product.queries.get_all_product_query import GetAllProductQuery
-from src.application.product.queries.get_by_id_product_query import GetByIdProductQuery
-from src.application.product.queries.get_by_name_product_query import GetByNameProductQuery
-from src.application.product.queries.abstract.get_all_product_query_abstract import GetAllProductQueryAbstract
-from src.application.product.queries.abstract.get_by_id_product_query_abstract import GetByIdProductQueryAbstract
-from src.application.product.queries.abstract.get_by_name_product_query_abstract import GetByNameProductQueryAbstract
-# product repositories
-from src.infra.product.repositories.create_product_repository import CreateProductRepository
-from src.infra.product.repositories.update_product_repository import UpdateProductRepository
-from src.infra.product.repositories.delete_product_repository import DeleteProductRepository
-from src.infra.product.repositories.get_all_product_repository import GetAllProductRepository
-from src.infra.product.repositories.get_by_id_product_repository import GetByIdProductRepository
-from src.infra.product.repositories.get_by_name_product_repository import GetByNameProductRepository
-# product events
-from src.application.product.events.event_product_publisher import EventProductPublisher
-from src.infra.product.repositories.event_product_repository import EventProductRepository
+
+from src.application.category.commands.abstract.create_category_command_abstract import (
+    CreateCategoryCommandAbstract,
+)
+from src.application.category.commands.abstract.delete_category_command_abstract import (
+    DeleteCategoryCommandAbstract,
+)
+from src.application.category.commands.abstract.update_category_command_abstract import (
+    UpdateCategoryCommandAbstract,
+)
 
 # category commands
 from src.application.category.commands.create_category_command import CreateCategoryCommand
 from src.application.category.commands.delete_category_command import DeleteCategoryCommand
 from src.application.category.commands.update_category_command import UpdateCategoryCommand
-from src.application.category.commands.abstract.create_category_command_abstract import CreateCategoryCommandAbstract
-from src.application.category.commands.abstract.delete_category_command_abstract import DeleteCategoryCommandAbstract
-from src.application.category.commands.abstract.update_category_command_abstract import UpdateCategoryCommandAbstract
+from src.application.category.events.event_category_publisher import EventCategoryPublisher
+from src.application.category.queries.abstract.get_all_category_query_abstract import (
+    GetAllCategoryQueryAbstract,
+)
+from src.application.category.queries.abstract.get_by_id_category_query_abstract import (
+    GetByIdCategoryQueryAbstract,
+)
+from src.application.category.queries.abstract.get_by_name_category_query_abstract import (
+    GetByNameCategoryQueryAbstract,
+)
+
 # category queries
 from src.application.category.queries.get_all_category_query import GetAllCategoryQuery
 from src.application.category.queries.get_by_id_category_query import GetByIdCategoryQuery
 from src.application.category.queries.get_by_name_category_query import GetByNameCategoryQuery
-from src.application.category.queries.abstract.get_all_category_query_abstract import GetAllCategoryQueryAbstract
-from src.application.category.queries.abstract.get_by_id_category_query_abstract import GetByIdCategoryQueryAbstract
-from src.application.category.queries.abstract.get_by_name_category_query_abstract import GetByNameCategoryQueryAbstract
-# category repositories
-from src.infra.category.repositories.create_category_repository import CreateCategoryRepository
-from src.infra.category.repositories.delete_category_repository import DeleteCategoryRepository
-from src.infra.category.repositories.get_all_category_repository import GetAllCategoryRepository
-from src.infra.category.repositories.get_by_id_category_repository import GetByIdCategoryRepository
-from src.infra.category.repositories.get_by_name_category_repository import GetByNameCategoryRepository
-from src.infra.category.repositories.update_category_repository import UpdateCategoryRepository
-# category events
-from src.infra.category.repositories.event_category_repository import EventCategoryRepository
-from src.application.category.events.event_category_publisher import EventCategoryPublisher
+from src.application.order.commands.abstract.create_order_command_abstract import (
+    CreateOrderCommandAbstract,
+)
+from src.application.order.commands.abstract.delete_order_command_abstract import (
+    DeleteOrderCommandAbstract,
+)
+from src.application.order.commands.abstract.update_order_command_abstract import (
+    UpdateOrderCommandAbstract,
+)
 
 # order commands
 from src.application.order.commands.create_order_command import CreateOrderCommand
-from src.application.order.commands.update_order_command import UpdateOrderCommand
 from src.application.order.commands.delete_order_command import DeleteOrderCommand
-from src.application.order.commands.abstract.create_order_command_abstract import CreateOrderCommandAbstract
-from src.application.order.commands.abstract.update_order_command_abstract import UpdateOrderCommandAbstract
-from src.application.order.commands.abstract.delete_order_command_abstract import DeleteOrderCommandAbstract
+from src.application.order.commands.update_order_command import UpdateOrderCommand
+from src.application.order.queries.abstract.get_all_order_query_abstract import (
+    GetAllOrderQueryAbstract,
+)
+from src.application.order.queries.abstract.get_by_id_order_query_abstract import (
+    GetByIdOrderQueryAbstract,
+)
+
 # order queries
 from src.application.order.queries.get_all_order_query import GetAllOrderQuery
 from src.application.order.queries.get_by_id_order_query import GetByIdOrderQuery
-from src.application.order.queries.abstract.get_all_order_query_abstract import GetAllOrderQueryAbstract
-from src.application.order.queries.abstract.get_by_id_order_query_abstract import GetByIdOrderQueryAbstract
+from src.application.product.commands.abstract.create_product_command_abstract import (
+    CreateProductCommandAbstract,
+)
+from src.application.product.commands.abstract.delete_product_command_abstract import (
+    DeleteProductCommandAbstract,
+)
+from src.application.product.commands.abstract.update_product_command_abstract import (
+    UpdateProductCommandAbstract,
+)
+
+# product commands
+from src.application.product.commands.create_product_command import CreateProductCommand
+from src.application.product.commands.delete_product_command import DeleteProductCommand
+from src.application.product.commands.update_product_command import UpdateProductCommand
+
+# product events
+from src.application.product.events.event_product_publisher import EventProductPublisher
+from src.application.product.queries.abstract.get_all_product_query_abstract import (
+    GetAllProductQueryAbstract,
+)
+from src.application.product.queries.abstract.get_by_id_product_query_abstract import (
+    GetByIdProductQueryAbstract,
+)
+from src.application.product.queries.abstract.get_by_name_product_query_abstract import (
+    GetByNameProductQueryAbstract,
+)
+
+# product queries
+from src.application.product.queries.get_all_product_query import GetAllProductQuery
+from src.application.product.queries.get_by_id_product_query import GetByIdProductQuery
+from src.application.product.queries.get_by_name_product_query import GetByNameProductQuery
+
+# category repositories
+from src.infra.category.repositories.create_category_repository import CreateCategoryRepository
+from src.infra.category.repositories.delete_category_repository import DeleteCategoryRepository
+
+# category events
+from src.infra.category.repositories.event_category_repository import EventCategoryRepository
+from src.infra.category.repositories.get_all_category_repository import GetAllCategoryRepository
+from src.infra.category.repositories.get_by_id_category_repository import GetByIdCategoryRepository
+from src.infra.category.repositories.get_by_name_category_repository import (
+    GetByNameCategoryRepository,
+)
+from src.infra.category.repositories.update_category_repository import UpdateCategoryRepository
+
 # order repositories
 from src.infra.order.repositories.create_order_repository import CreateOrderRepository
-from src.infra.order.repositories.update_order_repository import UpdateOrderRepository
 from src.infra.order.repositories.delete_order_repository import DeleteOrderRepository
 from src.infra.order.repositories.get_all_order_repository import GetAllOrderRepository
 from src.infra.order.repositories.get_by_id_order_repository import GetByIdOrderRepository
-from src.domain.order.repositories.abstract.create_order_repository_abstract import CreateOrderRepositoryAbstract
-from src.domain.order.repositories.abstract.update_order_repository_abstract import UpdateOrderRepositoryAbstract
-from src.domain.order.repositories.abstract.delete_order_repository_abstract import DeleteOrderRepositoryAbstract
-from src.domain.order.repositories.abstract.get_all_order_repository_abstract import GetAllOrderRepositoryAbstract
-from src.domain.order.repositories.abstract.get_by_id_order_repository_abstract import GetByIdOrderRepositoryAbstract
+from src.infra.order.repositories.update_order_repository import UpdateOrderRepository
+
+# product repositories
+from src.infra.product.repositories.create_product_repository import CreateProductRepository
+from src.infra.product.repositories.delete_product_repository import DeleteProductRepository
+from src.infra.product.repositories.event_product_repository import EventProductRepository
+from src.infra.product.repositories.get_all_product_repository import GetAllProductRepository
+from src.infra.product.repositories.get_by_id_product_repository import GetByIdProductRepository
+from src.infra.product.repositories.get_by_name_product_repository import GetByNameProductRepository
+from src.infra.product.repositories.update_product_repository import UpdateProductRepository
 
 # s3 service
 from src.services.interfaces.i_s3_service import IS3Service
 from src.services.s3_service import S3Service
+
 
 class IoCContainer:
     def __init__(self) -> Any:
@@ -162,7 +204,7 @@ def setup_ioc() -> Any:
     container.register(CreateOrderCommandAbstract, create_order_command)
     container.register(UpdateOrderCommandAbstract, update_order_command)
     container.register(DeleteOrderCommandAbstract, delete_order_command)
-    
+
     # Category
     container.register(GetAllCategoryQueryAbstract, get_all_category_query)
     container.register(GetByIdCategoryQueryAbstract, get_by_id_category_query)

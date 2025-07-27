@@ -1,4 +1,6 @@
 from typing import Any
+
+
 class CategoryDto:
     def __init__(self, id: Any, name: Any, description: Any) -> Any:
         self.id = id

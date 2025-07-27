@@ -1,4 +1,5 @@
 from typing import Any
+
 from src.domain.category.repositories.get_by_id_category_repository_abstract import (
     GetByIdCategoryRepositoryAbstract,
 )

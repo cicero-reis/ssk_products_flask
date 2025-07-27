@@ -1,5 +1,5 @@
-from typing import Any
 from datetime import datetime, timezone
+from typing import Any
 
 from sqlalchemy import event  # type: ignore
 

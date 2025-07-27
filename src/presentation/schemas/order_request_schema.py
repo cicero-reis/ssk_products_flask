@@ -1,5 +1,4 @@
-from typing import Any
-from marshmallow import Schema, fields, ValidationError
+from marshmallow import Schema, ValidationError, fields
 
 
 # Schema para um produto individual
@@ -10,7 +9,8 @@ class ProductSchema(Schema):
     quantity = fields.Int(required=True)
 
 # Schema para o pedido, que contém uma lista de produtos e o id do cliente
-from marshmallow import validates, ValidationError
+from marshmallow import ValidationError, validates
+
 
 class OrderRequestSchema(Schema):
     products = fields.List(fields.Nested(ProductSchema), required=True)

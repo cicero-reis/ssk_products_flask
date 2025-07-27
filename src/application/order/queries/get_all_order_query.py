@@ -1,5 +1,7 @@
 from typing import Any
+
 from src.application.order.dtos.order_dto import OrderDTO
+
 
 class GetAllOrderQuery:
     def __init__(self, repo: Any) -> Any:

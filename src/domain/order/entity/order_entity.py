@@ -1,4 +1,3 @@
-from typing import Any
 class OrderEntity:
     def __init__(
         self,

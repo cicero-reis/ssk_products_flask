@@ -1,4 +1,5 @@
 from typing import Any
+
 from flask_restful import Resource, request
 from marshmallow import ValidationError
 

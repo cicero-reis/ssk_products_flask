@@ -1,7 +1,8 @@
 from typing import Any
 
-from src.infra.order.repositories.mongo_order_repository import MongoOrderRepository
 from flask import current_app
+
+from src.infra.order.repositories.mongo_order_repository import MongoOrderRepository
 
 
 class GetAllOrderRepository:

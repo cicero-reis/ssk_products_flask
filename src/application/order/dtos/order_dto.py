@@ -1,5 +1,6 @@
 from typing import Any
 
+
 class OrderDTO:
     def __init__(self, id: Any, products: list, order_number: Any, created_at: Any, updated_at: Any, deleted_at: Any) -> None:
         self.id = id

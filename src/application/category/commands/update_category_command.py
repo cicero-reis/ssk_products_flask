@@ -1,3 +1,4 @@
+from typing import Any
 from src.application.category.commands.abstract.update_category_command_abstract import (
     UpdateCategoryCommandAbstract,
 )
@@ -17,7 +18,7 @@ class UpdateCategoryCommand(UpdateCategoryCommandAbstract):
         self.repo = repo
         self.event = event
 
-    def handle(self, id, data):
+    def handle(self, id: Any, data: Any) -> Any:
         success, category = self.repo.update(id, data)
 
         if not success:

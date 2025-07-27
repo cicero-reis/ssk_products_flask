@@ -1,3 +1,4 @@
+from typing import Any
 from extensions import db
 from src.domain.product.repositories.event_product_repository_abstract import (
     EventProductRepositoryAbstract,
@@ -6,7 +7,7 @@ from src.infra.models.product_event import ProducEvent
 
 
 class EventProductRepository(EventProductRepositoryAbstract):
-    def save_event(self, event_type, data, user_id=0):
+    def save_event(self, event_type: Any, data: Any, user_id: Any = 0) -> Any:
         event = ProducEvent(
             product_id=data.id,
             user_id=user_id, 
@@ -17,7 +18,7 @@ class EventProductRepository(EventProductRepositoryAbstract):
         db.session.commit()
         return event
 
-    def get_events(self, product_id):
+    def get_events(self, product_id: Any) -> Any:
         return (
             ProducEvent.query.filter_by(product_id=product_id).order_by(ProducEvent.timestamp).all()
         )

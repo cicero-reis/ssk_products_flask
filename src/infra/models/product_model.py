@@ -1,3 +1,4 @@
+from typing import Any
 from datetime import datetime, timezone
 
 from sqlalchemy import event  # type: ignore
@@ -22,7 +23,7 @@ class ProductModel(db.Model):
     updated_at = db.Column(db.TIMESTAMP, default=datetime.utcnow, onupdate=datetime.utcnow)
     deleted_at = db.Column(db.TIMESTAMP, nullable=True)
 
-    def __init__(self, name, description, price, category_id, original_name, stored_filename):
+    def __init__(self, name: Any, description: Any, price: Any, category_id: Any, original_name: Any, stored_filename: Any) -> Any:
         self.name = name
         self.description = description
         self.price = price
@@ -30,7 +31,7 @@ class ProductModel(db.Model):
         self.original_name = original_name
         self.stored_filename = stored_filename
 
-    def json(self):
+    def json(self) -> Any:
         return {
             "id": self.id,
             "name": self.name,
@@ -42,39 +43,39 @@ class ProductModel(db.Model):
         }
 
     @classmethod
-    def get_all_active_products(cls):
+    def get_all_active_products(cls: Any) -> Any:
         return cls.query.filter(cls.deleted_at.is_(None)).all()
 
     @classmethod
-    def find_product(cls, id):
+    def find_product(cls: Any, id: Any) -> Any:
         return cls.query.filter(cls.deleted_at.is_(None), cls.id == id).first()
 
     @classmethod
-    def find_by_name(cls, name):
+    def find_by_name(cls: Any, name: Any) -> Any:
         return cls.query.filter(cls.deleted_at.is_(None), cls.name == name).first()
 
-    def save_product(self):
+    def save_product(self) -> Any:
         db.session.add(self)
         db.session.commit()
 
-    def update_product(self, **kwargs):
+    def update_product(self, **kwargs: Any) -> Any:
         for attr, value in kwargs.items():
             if hasattr(self, attr):
                 setattr(self, attr, value)
         db.session.commit()
 
-    def delete_product(self):
+    def delete_product(self) -> Any:
         self.deleted_at = datetime.now(timezone.utc)
         db.session.commit()
 
 
 # Eventos para created_at / updated_at
 @event.listens_for(ProductModel, "before_insert")
-def before_insert(mapper, connection, target):
+def before_insert(mapper: Any, connection: Any, target: Any) -> Any:
     target.created_at = datetime.now(timezone.utc)
     target.updated_at = datetime.now(timezone.utc)
 
 
 @event.listens_for(ProductModel, "before_update")
-def before_update(mapper, connection, target):
+def before_update(mapper: Any, connection: Any, target: Any) -> Any:
     target.updated_at = datetime.now(timezone.utc)

@@ -4,7 +4,7 @@ resource "aws_cloudwatch_log_group" "ssk_log_group" {
   tags              = var.tags
 }
 
-resource "aws_cloudwatch_log_stream" "laravel_log_stream" {
+resource "aws_cloudwatch_log_stream" "ssk_log_stream" {
   name           = var.cloudwatch_log_stream_name
   log_group_name = aws_cloudwatch_log_group.ssk_log_group.name
 }

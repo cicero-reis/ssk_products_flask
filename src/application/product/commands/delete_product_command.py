@@ -1,3 +1,4 @@
+from typing import Any
 from src.application.product.commands.abstract.delete_product_command_abstract import (
     DeleteProductCommandAbstract,
 )
@@ -10,11 +11,11 @@ from src.domain.product.repositories.delete_product_repository_abstract import (
 
 
 class DeleteProductCommand(DeleteProductCommandAbstract):
-    def __init__(self, repo: DeleteProductRepositoryAbstract, event: EventProductPublisherAbstract):
+    def __init__(self, repo: DeleteProductRepositoryAbstract, event: EventProductPublisherAbstract) -> Any:
         self.repo = repo
         self.event = event
 
-    def handle(self, id):
+    def handle(self, id: Any) -> Any:
         product = self.repo.delete(id)
         if not product:
             return None, f"Product id {id} not found"

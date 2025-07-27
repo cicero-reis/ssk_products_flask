@@ -1,3 +1,4 @@
+from typing import Any
 import logging
 
 from extensions import db
@@ -9,7 +10,7 @@ from src.infra.models.category_event import CategoryEvent
 logger = logging.getLogger(__name__)
 
 class EventCategoryRepository(EventCategoryRepositoryAbstract):
-    def save_event(self, event_type, data, user_id=0):
+    def save_event(self, event_type: Any, data: Any, user_id: Any = 0) -> Any:
         event = CategoryEvent(
             category_id=data.id,
             user_id=user_id,
@@ -20,7 +21,7 @@ class EventCategoryRepository(EventCategoryRepositoryAbstract):
         db.session.commit()
         return event
 
-    def get_events(self, category_id):
+    def get_events(self, category_id: Any) -> Any:
         return (
             CategoryEvent.query.filter_by(category_id=category_id)
             .order_by(CategoryEvent.timestamp.desc())

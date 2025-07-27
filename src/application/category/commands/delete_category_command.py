@@ -1,3 +1,4 @@
+from typing import Any
 from src.application.category.commands.abstract.delete_category_command_abstract import (
     DeleteCategoryCommandAbstract,
 )
@@ -10,11 +11,11 @@ from src.domain.category.repositories.delete_category_repository_abstract import
 
 
 class DeleteCategoryCommand(DeleteCategoryCommandAbstract):
-    def __init__(self, repo: DeleteCategoryRepositoryAbstract, event: EventCategoryPublisherAbstract):
+    def __init__(self, repo: DeleteCategoryRepositoryAbstract, event: EventCategoryPublisherAbstract) -> Any:
         self.repo = repo
         self.event = event
 
-    def handle(self, id):
+    def handle(self, id: Any) -> Any:
         category = self.repo.delete(id)
 
         if not category:

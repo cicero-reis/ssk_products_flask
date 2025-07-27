@@ -1,3 +1,4 @@
+from typing import Any
 from datetime import datetime
 
 from extensions import db
@@ -13,7 +14,7 @@ class ProducEvent(db.Model):
     data = db.Column(db.JSON, nullable=False)
     timestamp = db.Column(db.TIMESTAMP, default=datetime.utcnow)
 
-    def json(self):
+    def json(self) -> Any:
         return {
             "id": self.id,
             "product_id": self.product_id,

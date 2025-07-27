@@ -1,14 +1,15 @@
+from typing import Any
 from flask import jsonify
 from sqlalchemy.exc import OperationalError
 
 
-def register_error_handlers(app):
+def register_error_handlers(app: Any) -> Any:
     @app.errorhandler(404)
-    def not_found(error):
+    def not_found(error: Any) -> Any:
         return jsonify({"message": "Recurso não encontrado.", "status": 404}), 404
 
     @app.errorhandler(OperationalError)
-    def handle_db_error(error):
+    def handle_db_error(error: Any) -> Any:
         return jsonify(
             {
                 "message": "Erro ao conectar ao banco de dados. Tente novamente mais tarde.",
@@ -17,7 +18,7 @@ def register_error_handlers(app):
         ), 500
 
     @app.errorhandler(500)
-    def internal_error(error):
+    def internal_error(error: Any) -> Any:
         return jsonify(
             {"message": "Ocorreu um erro interno no servidor. Tente novamente.", "status": 500}
         ), 500

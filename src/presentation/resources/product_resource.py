@@ -1,3 +1,4 @@
+from typing import Any
 from flask_restful import Resource, request
 from marshmallow import ValidationError
 
@@ -17,7 +18,7 @@ from src.presentation.schemas.product_update_request_schema import ProductUpdate
 
 
 class ProductResource(Resource):
-    def __init__(self, container):
+    def __init__(self, container: Any) -> Any:
         self.get_product_by_id_query = container.resolve(GetByIdProductQueryAbstract)
         self.update_product_command = container.resolve(UpdateProductCommandAbstract)
         self.delete_product_command = container.resolve(DeleteProductCommandAbstract)
@@ -26,13 +27,13 @@ class ProductResource(Resource):
         self.product_path_request_schema = ProductPathRequestSchema(container)
         self.product_response_schema = ProductResponseSchema()
 
-    def get(self, id):
+    def get(self, id: Any) -> Any:
         product, error = self.get_product_by_id_query.handle(id)
         if error:
             return {"error": error}, 404
         return {"product": product}, 200
 
-    def put(self, id):
+    def put(self, id: Any) -> Any:
         data = request.json
 
         if not data:
@@ -55,7 +56,7 @@ class ProductResource(Resource):
 
         return {"product": product}, 200
 
-    def patch(self, id):
+    def patch(self, id: Any) -> Any:
         data = request.json
 
         if not data:
@@ -78,7 +79,7 @@ class ProductResource(Resource):
 
         return {"product": product}, 200
 
-    def delete(self, id):
+    def delete(self, id: Any) -> Any:
         success, error = self.delete_product_command.handle(id)
         if error:
             return {"error": error}, 404

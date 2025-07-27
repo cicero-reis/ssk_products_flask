@@ -1,3 +1,4 @@
+from typing import Any
 from marshmallow import Schema, ValidationError, fields, validates, validates_schema
 
 from src.application.product.queries.abstract.get_by_name_product_query_abstract import (
@@ -19,12 +20,12 @@ class ProductPathRequestSchema(Schema):
         required=False, allow_none=True, error_messages={"required": "image is required."}
     )
 
-    def __init__(self, container, *args, **kwargs):
+    def __init__(self, container: Any, *args: Any, **kwargs: Any) -> Any:
         super().__init__(*args, **kwargs)
         self.get_by_name_product_query = container.resolve(GetByNameProductQueryAbstract)
 
     @validates_schema
-    def validate_name(self, data, **kwargs):
+    def validate_name(self, data: Any, **kwargs: Any) -> Any:
         current_id = data.get("id")
         value_name = data.get("name")
 
@@ -48,7 +49,7 @@ class ProductPathRequestSchema(Schema):
                 raise ValidationError("name must be unique. This name already exists.")
 
     @validates("description")
-    def validate_description(self, value):
+    def validate_description(self, value: Any) -> Any:
         if value is not None:
             if not value.strip():
                 raise ValidationError("description cannot be empty.")
@@ -56,12 +57,12 @@ class ProductPathRequestSchema(Schema):
                 raise ValidationError("description must be at least 10 characters long.")
 
     @validates("price")
-    def validate_price(self, value):
+    def validate_price(self, value: Any) -> Any:
         if value is not None and value <= 0:
             raise ValidationError("price must be greater than 0.")
 
     @validates("category_id")
-    def validate_category_id(self, value):
+    def validate_category_id(self, value: Any) -> Any:
         if value is not None and value <= 0:
             raise ValidationError("category_id must be greater than 0.")
 

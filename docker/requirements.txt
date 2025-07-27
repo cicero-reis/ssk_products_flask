@@ -41,4 +41,5 @@ types-pytz
 six==1.16.0
 SQLAlchemy==1.4.46
 Werkzeug==2.0.1
+pymongo==4.7.2
 

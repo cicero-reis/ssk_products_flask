@@ -1,3 +1,4 @@
+from typing import Any
 from flask_restful import Resource, request
 from marshmallow import ValidationError
 
@@ -12,19 +13,19 @@ from src.presentation.schemas.category_response_schema import CategoryResponseSc
 
 
 class CategoryListResource(Resource):
-    def __init__(self, container):
+    def __init__(self, container: Any) -> Any:
         self.create_category_command = container.resolve(CreateCategoryCommandAbstract)
         self.get_all_category_query = container.resolve(GetAllCategoryQueryAbstract)
         self.category_request_schema = CategoryRequestSchema(container)
         self.category_response_schema = CategoryResponseSchema()
 
-    def get(self):
+    def get(self) -> Any:
         categories, error = self.get_all_category_query.handle()
         if error:
             return {"error": error}, 400
         return {"categories": categories}, 200
 
-    def post(self):
+    def post(self) -> Any:
         data = request.json
 
         if not data:

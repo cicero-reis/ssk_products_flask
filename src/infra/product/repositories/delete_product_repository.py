@@ -1,3 +1,4 @@
+from typing import Any
 from src.domain.product.repositories.delete_product_repository_abstract import (
     DeleteProductRepositoryAbstract,
 )
@@ -8,10 +9,10 @@ from src.infra.models.product_model import ProductModel
 
 
 class DeleteProductRepository(DeleteProductRepositoryAbstract):
-    def __init__(self, event_repo: EventProductRepositoryAbstract):
+    def __init__(self, event_repo: EventProductRepositoryAbstract) -> Any:
         self.event_repo = event_repo
 
-    def delete(self, id):
+    def delete(self, id: Any) -> Any:
         product = ProductModel.find_product(id)
         if not product:
             return None

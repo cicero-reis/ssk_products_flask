@@ -1,3 +1,4 @@
+from typing import Any
 from src.application.category.dtos.category_dto import CategoryDto
 from src.application.category.queries.abstract.get_by_id_category_query_abstract import (
     GetByIdCategoryQueryAbstract,
@@ -8,10 +9,10 @@ from src.domain.category.repositories.get_by_id_category_repository_abstract imp
 
 
 class GetByIdCategoryQuery(GetByIdCategoryQueryAbstract):
-    def __init__(self, repo: GetByIdCategoryRepositoryAbstract):
+    def __init__(self, repo: GetByIdCategoryRepositoryAbstract) -> Any:
         self.repo = repo
 
-    def handle(self, id):
+    def handle(self, id: Any) -> Any:
         category = self.repo.get_by_id(id)
 
         if not category:

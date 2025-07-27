@@ -1,4 +1,5 @@
 from typing import Any
+
 from src.domain.product.repositories.get_all_product_repository_abstract import (
     GetAllProductRepositoryAbstract,
 )

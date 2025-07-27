@@ -1,7 +1,10 @@
-from typing import Any
-from bson import ObjectId
-from src.infra.models.order_mongo_model import OrderMongoModel
 from datetime import datetime
+from typing import Any
+
+from bson import ObjectId
+
+from src.infra.models.order_mongo_model import OrderMongoModel
+
 
 class MongoOrderRepository:
     def __init__(self, db: Any, collection_name: Any = "orders") -> Any:

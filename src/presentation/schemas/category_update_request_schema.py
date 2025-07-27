@@ -1,4 +1,5 @@
 from typing import Any
+
 from marshmallow import Schema, ValidationError, fields, validates, validates_schema
 
 from src.application.category.queries.abstract.get_by_name_category_query_abstract import (

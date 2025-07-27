@@ -28,6 +28,7 @@ exclude = [
     "migrations",
     "htmlcov",
     "dist",
+    "src/__init__.py",  # exclui esse arquivo específico
 ]
 
 [tool.ruff.isort]

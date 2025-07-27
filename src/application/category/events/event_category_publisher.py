@@ -1,4 +1,5 @@
 from typing import Any
+
 from src.application.category.events.abstract.event_category_publisher_abstract import (
     EventCategoryPublisherAbstract,
 )

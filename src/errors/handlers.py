@@ -1,4 +1,5 @@
 from typing import Any
+
 from flask import jsonify
 from sqlalchemy.exc import OperationalError
 

@@ -1,4 +1,5 @@
 from typing import Any
+
 from src.application.product.dtos.product_dto import ProductDTO
 from src.application.product.queries.abstract.get_by_id_product_query_abstract import (
     GetByIdProductQueryAbstract,

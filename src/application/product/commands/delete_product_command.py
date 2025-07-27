@@ -1,4 +1,5 @@
 from typing import Any
+
 from src.application.product.commands.abstract.delete_product_command_abstract import (
     DeleteProductCommandAbstract,
 )

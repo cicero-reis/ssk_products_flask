@@ -1,4 +1,5 @@
 from typing import Any
+
 from src.application.product.commands.abstract.create_product_command_abstract import (
     CreateProductCommandAbstract,
 )
@@ -9,6 +10,7 @@ from src.application.product.events.abstract.event_product_publisher_abstract im
 from src.domain.product.repositories.create_product_repository_abstract import (
     CreateProductRepositoryAbstract,
 )
+
 
 class CreateProductCommand(CreateProductCommandAbstract):
     def __init__(self, repo: CreateProductRepositoryAbstract, event: EventProductPublisherAbstract) -> Any:

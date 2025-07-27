@@ -1,4 +1,5 @@
 from typing import Any
+
 from flask_restful import Resource, request
 from marshmallow import ValidationError
 
@@ -10,8 +11,8 @@ from src.application.product.queries.abstract.get_all_product_query_abstract imp
 )
 from src.presentation.schemas.product_request_schema import ProductRequestSchema
 from src.presentation.schemas.product_response_schema import ProductResponseSchema
-from src.utils.file_utils import generate_stored_filename
 from src.services.interfaces.i_s3_service import IS3Service
+from src.utils.file_utils import generate_stored_filename
 
 
 class ProductListResource(Resource):

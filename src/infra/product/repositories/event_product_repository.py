@@ -1,4 +1,5 @@
 from typing import Any
+
 from extensions import db
 from src.domain.product.repositories.event_product_repository_abstract import (
     EventProductRepositoryAbstract,
@@ -10,8 +11,8 @@ class EventProductRepository(EventProductRepositoryAbstract):
     def save_event(self, event_type: Any, data: Any, user_id: Any = 0) -> Any:
         event = ProducEvent(
             product_id=data.id,
-            user_id=user_id, 
-            event_type=event_type, 
+            user_id=user_id,
+            event_type=event_type,
             data=data.json()
         )
         db.session.add(event)

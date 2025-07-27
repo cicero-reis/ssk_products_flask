@@ -1,4 +1,3 @@
-from typing import Any
 class ProductEntity:
     def __init__(
         self,

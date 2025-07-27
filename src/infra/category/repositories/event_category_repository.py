@@ -1,5 +1,5 @@
-from typing import Any
 import logging
+from typing import Any
 
 from extensions import db
 from src.domain.category.repositories.event_category_repository_abstract import (

@@ -1,4 +1,5 @@
 from typing import Any
+
 from src.application.category.commands.abstract.delete_category_command_abstract import (
     DeleteCategoryCommandAbstract,
 )

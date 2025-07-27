@@ -1,4 +1,6 @@
 from typing import Any
+
+
 class ProductEventDTO:
     def __init__(self, id: Any, product_id: Any, action: Any, data: Any, version: Any, timestamp: Any) -> Any:
         self.id = id

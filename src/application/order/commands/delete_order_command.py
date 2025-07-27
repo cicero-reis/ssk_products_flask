@@ -1,4 +1,6 @@
 from typing import Any
+
+
 class DeleteOrderCommand:
     def __init__(self, repo: Any, event: Any) -> Any:
         self.repo = repo
